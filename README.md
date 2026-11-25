@@ -158,6 +158,11 @@ changes, run `npx skills update` in the project.
 
 ## Vendoring a third-party skill
 
+To find candidates, search the skills.sh registry with `node scripts/scout.mjs <query>`
+(or the repo-local `scout-skills` skill). Each hit says whether it is already vendored,
+catalogued or refused here, and whether its licence allows vendoring. It never installs
+anything.
+
 ```bash
 node scripts/vendor.mjs --add <owner/repo> <path-to-skill-folder>   # first copy
 node scripts/vendor.mjs --check                                     # compare with upstream
