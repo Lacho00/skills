@@ -28,6 +28,7 @@ changes, run `npx skills update` in the project.
 | Skill | Stack | What it does |
 |---|---|---|
 | `astro-framework` | Astro | Astro project layout, islands, content collections, adapters and the checks that prove a change works |
+| `git-protect-main` | Git | Local pre-push hook that refuses direct pushes to `main` (or other protected branches) in every worktree of a repo |
 
 ### General
 
