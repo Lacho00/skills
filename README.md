@@ -56,6 +56,38 @@ node scripts/vendor.mjs --update [name...]                          # copy the l
 - CI fails if any file asks an agent to install skills, plugins or scripts from
   outside this repository.
 
+### Weekly upstream updates
+
+`.github/workflows/vendor-update.yml` runs every Monday (or by hand from the
+Actions tab). It runs `scripts/vendor-prs.mjs`, which:
+
+- compares every vendored skill with the last upstream commit touching its path;
+- for each source that changed, copies the new commit on a `vendor/<owner>-<repo>`
+  branch, runs `npm test` and `npm run check`, and opens or refreshes one PR per
+  source with links to the upstream diff;
+- for a copy marked `"modified": true`, opens an issue instead of a PR;
+- fails the job (GitHub emails it) when a source is refused, for example because
+  its licence is no longer redistributable. The old copy stays.
+
+It never merges: read the diff, run the OCR review, and merge by hand.
+
+The workflow needs "Allow GitHub Actions to create and approve pull requests"
+enabled in the repository settings. PRs opened with the default token do not
+trigger the `check` workflow. To run `check` on them too, add a fine-grained PAT
+as the `VENDOR_TOKEN` secret.
+
+## Which projects are behind
+
+```bash
+npm run status                 # every project next to this repo
+npm run status -- <dir> --json
+```
+
+Reads each project's `skills-lock.json` and compares the hash of every skill
+installed from Lacho00/skills with `skills/<name>` on `origin/main`. It lists the
+skills that are behind (run `npx skills update` in that project), the ones no
+longer in this repository, and how many skills still come from other sources.
+
 ## License
 
 [MIT](LICENSE).

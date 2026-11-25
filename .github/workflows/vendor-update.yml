@@ -1,0 +1,40 @@
+name: vendor-update
+# Weekly: compare every vendored skill with its upstream and open one PR per
+# source that changed. Never merges. Modified copies only get a notice issue.
+# A source whose licence stops being redistributable fails the job (GitHub
+# emails the failure) and its old copy stays.
+#
+# PRs opened with the default GITHUB_TOKEN do not trigger the `check` workflow;
+# the job runs the same tests and checks before pushing. Set a VENDOR_TOKEN
+# secret (fine-grained PAT: contents, pull requests and issues read/write on
+# this repository) to have `check` run on those PRs too.
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency:
+  group: vendor-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.VENDOR_TOKEN || github.token }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - run: node scripts/vendor-prs.mjs
+        env:
+          GH_TOKEN: ${{ secrets.VENDOR_TOKEN || github.token }}
