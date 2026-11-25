@@ -15,43 +15,45 @@ const RULES = [
   { re: /https?:\/\/\S+\/install(?:er)?\.(?:sh|ps1)\b/gi, why: 'install script URL' },
 ];
 
-// A URL is vetted when it is already in normal form (no "..", ".", percent
-// escapes or userinfo that could move it outside the prefix) and starts with
-// one of the prefixes.
-const vettedUrl = (u, allow) => {
-  let n;
-  try {
-    n = new URL(u);
-  } catch {
-    return false;
-  }
-  if (n.href !== u || n.username || n.password || /%|\/\.{1,2}(?:\/|$)/.test(n.pathname)) return false;
-  return allow.some((p) => u.startsWith(p));
+// Allowed installers are checked against the whole line, never against the
+// regex match alone: whatever follows or precedes the match on that line runs
+// in the same shell. A vetted URL uses only unreserved characters (no shell
+// metacharacters, query, percent escapes, userinfo or "."/".." segments) and
+// starts with one of the skill's prefixes.
+const SAFE_URL = /^https:\/\/[a-z0-9.-]+\/(?:[A-Za-z0-9_~-][A-Za-z0-9._~-]*\/?)*$/;
+const vettedUrl = (u, allow) =>
+  SAFE_URL.test(u) && !/\/\.{1,2}(?:\/|$)/.test(u) && allow.some((p) => u.startsWith(p));
+
+// The one shape of an allowed command line: an optional Markdown bullet and
+// plain-text label, then `curl|wget [-flags] <url> [\]| [sudo] sh|bash|zsh|dash`
+// and nothing else up to the end of the line.
+const ALLOWED_LINE =
+  /^\s*(?:[-*]\s+)?(?:[A-Za-z0-9][A-Za-z0-9 .,/-]*:\s+)?`?(?:curl|wget)(?:\s+-{1,2}[A-Za-z][\w-]*)*\s+(\S+)\s+\\?\|\s*(?:sudo\s+)?(?:ba|z|da)?sh`?\s*$/;
+// A bare installer URL mentioned in prose, with only quotes, brackets or a
+// final full stop or comma around it.
+const bareToken = (line, index, match) => {
+  const before = line.slice(0, index).match(/\S*$/)[0];
+  const after = line.slice(index + match.length).match(/^\S*/)[0];
+  return /^[`'"(<]*$/.test(before) && /^[`'")>]*[.,]?$/.test(after);
 };
 
-// A match is allowed only in one exact shape: the vetted URL alone, or
-// `curl|wget [-flags] <vetted URL> [\]| [sudo] sh|bash|zsh|dash`. Any other
-// token (a second destination, a variable, `-o file; …`) makes it a refusal.
-const FLAG = /^-{1,2}[A-Za-z][\w-]*$/;
-const PIPE_TAIL = /\s*\\?\|\s*(?:sudo\s+)?(?:ba|z|da)?sh$/;
-const isAllowed = (match, allow) => {
-  const text = match.trim();
-  if (!/\s/.test(text)) return vettedUrl(text, allow);
-  if (!PIPE_TAIL.test(text)) return false;
-  const [cmd, ...rest] = text.replace(PIPE_TAIL, '').split(/\s+/);
-  if (!/^(?:curl|wget)$/.test(cmd)) return false;
-  const args = rest.filter((t) => !FLAG.test(t));
-  return args.length === 1 && vettedUrl(args[0], allow);
+const isAllowed = (line, col, match, allow) => {
+  const cmd = line.match(ALLOWED_LINE);
+  if (cmd) return vettedUrl(cmd[1], allow);
+  return !/\s/.test(match) && vettedUrl(match, allow) && bareToken(line, col, match) && !/\b(?:curl|wget)\b/.test(line);
 };
 
 // Install commands found in `text`, as [{ line, why, match }]. `allow` lists
 // URL prefixes of installers vetted for this skill.
 export function findInstallCommands(text, allow = []) {
+  const lines = text.split('\n');
   const hits = [];
   for (const { re, why } of RULES) {
     for (const m of text.matchAll(re)) {
-      if (allow.length && isAllowed(m[0], allow)) continue;
-      const line = text.slice(0, m.index).split('\n').length;
+      const before = text.slice(0, m.index);
+      const line = before.split('\n').length;
+      const col = m.index - (before.lastIndexOf('\n') + 1);
+      if (allow.length && isAllowed(lines[line - 1], col, m[0], allow)) continue;
       hits.push({ line, why, match: m[0].trim() });
     }
   }
