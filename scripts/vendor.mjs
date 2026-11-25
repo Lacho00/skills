@@ -3,7 +3,7 @@
 // Run by hand or by the weekly workflow, never at install time: projects only
 // ever install from Lacho00/skills.
 //
-//   node scripts/vendor.mjs --add <owner/repo> <path-in-repo> [--name <name>]
+//   node scripts/vendor.mjs --add <owner/repo> <path-in-repo> [--name <name>] [--allow-install <url-prefix>]...
 //   node scripts/vendor.mjs --check [--json] [--source <owner/repo>] [name...]
 //   node scripts/vendor.mjs --update [--source <owner/repo>] [name...]
 //   node scripts/vendor.mjs --notice
@@ -11,7 +11,9 @@
 // --check compares each vendored commit with the last upstream commit that
 // touched the skill's path. --update copies that commit, refusing sources whose
 // licence is missing or not redistributable (the old copy is kept). Entries
-// marked "modified": true are reported but never overwritten.
+// marked "modified": true are reported but never overwritten. Upstream install
+// commands are refused unless every URL in them starts with a prefix from the
+// entry's "allowInstall" (set once with --allow-install, kept on update).
 import { execFileSync } from 'node:child_process';
 import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -101,7 +103,7 @@ function copySkill(rootDir, up, name, entry, commit) {
     const rel = f.file.slice(entry.path.length + 1);
     const text = readFileSync(join(stage, rel));
     if (text.includes(0)) continue;
-    const hits = findInstallCommands(text.toString('utf8'));
+    const hits = findInstallCommands(text.toString('utf8'), entry.allowInstall ?? []);
     if (hits.length) throw new Error(`${name}: upstream ${rel}:${hits[0].line} contains an install command (${hits[0].why}): ${hits[0].match}`);
   }
 
@@ -166,14 +168,14 @@ export function update(rootDir, up, opts) {
   return results;
 }
 
-export function add(rootDir, up, { source, path, name }) {
+export function add(rootDir, up, { source, path, name, allowInstall }) {
   const cleanPath = path.replace(/^\/+|\/+$/g, '');
   const skill = name ?? basename(cleanPath);
   if (!KEBAB.test(skill)) throw new Error(`${skill}: name must be kebab-case (use --name)`);
   const manifest = readManifest(rootDir);
   if (manifest.skills[skill]) throw new Error(`${skill}: already in vendor.json; use --update`);
   if (existsSync(join(rootDir, 'skills', skill))) throw new Error(`${skill}: skills/${skill} already exists`);
-  const entry = { source, path: cleanPath };
+  const entry = { source, path: cleanPath, ...(allowInstall?.length ? { allowInstall } : {}) };
   const draftErrors = validateEntry(skill, { ...entry, commit: '0'.repeat(40), license: 'MIT', licenseFrom: 'x', hash: '0'.repeat(64) });
   if (draftErrors.length) throw new Error(`${skill}: ${draftErrors.join('; ')}`);
   manifest.skills[skill] = copySkill(rootDir, up, skill, entry, up.latest(source, cleanPath));
@@ -183,7 +185,7 @@ export function add(rootDir, up, { source, path, name }) {
 }
 
 function parseArgs(argv) {
-  const opts = { mode: null, names: [], source: null, json: false, name: null };
+  const opts = { mode: null, names: [], source: null, json: false, name: null, allowInstall: [] };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (['--add', '--check', '--update', '--notice'].includes(a)) {
@@ -195,10 +197,16 @@ function parseArgs(argv) {
       if (!value || value.startsWith('-')) throw new Error(`${a} needs a value`);
       opts[a.slice(2)] = value;
     }
+    else if (a === '--allow-install') {
+      const value = argv[++i];
+      if (!value || value.startsWith('-')) throw new Error(`${a} needs a value`);
+      opts.allowInstall.push(value);
+    }
     else if (a.startsWith('-')) throw new Error(`unknown option ${a}`);
     else opts.names.push(a);
   }
-  if (!opts.mode) throw new Error('usage: vendor.mjs --add <owner/repo> <path> [--name n] | --check [--json] | --update | --notice');
+  if (opts.allowInstall.length && opts.mode !== 'add') throw new Error('--allow-install only goes with --add');
+  if (!opts.mode) throw new Error('usage: vendor.mjs --add <owner/repo> <path> [--name n] [--allow-install prefix] | --check [--json] | --update | --notice');
   return opts;
 }
 
@@ -214,7 +222,7 @@ function main(argv) {
     if (opts.mode === 'add') {
       const [source, path] = opts.names;
       if (!source || !path) throw new Error('--add needs <owner/repo> <path-in-repo>');
-      const r = add(rootDir, up, { source, path, name: opts.name });
+      const r = add(rootDir, up, { source, path, name: opts.name, allowInstall: opts.allowInstall });
       console.log(`added ${r.name} from ${r.source}@${r.commit.slice(0, 7)} (${r.license})`);
       return 0;
     }

@@ -138,6 +138,7 @@ changes, run `npx skills update` in the project.
 
 | Skill | Vendored from | Licence | What it does |
 |---|---|---|---|
+| `android-cli` | [android/skills](https://github.com/android/skills) | Apache-2.0 | Use the `android` CLI to create projects, manage the SDK, and run apps on devices |
 | `compose-animations` | [chrisbanes/skills](https://github.com/chrisbanes/skills) | Apache-2.0 | Write or review Jetpack Compose motion |
 | `edge-to-edge` | [android/skills](https://github.com/android/skills) | Apache-2.0 | Use this skill to migrate your Jetpack Compose app to add adaptive edge-to-edge support and… |
 | `jetpack-compose-performance` | [android/skills](https://github.com/android/skills) | Apache-2.0 | Diagnose and optimize Android Jetpack Compose UI code |
@@ -170,6 +171,13 @@ node scripts/vendor.mjs --update [name...]                          # copy the l
   To adapt a skill, write a new own skill instead. If a copy really has to be
   edited, set `"modified": true` in its vendor.json entry; updates then only
   report upstream changes.
+- A copy that tells the agent to install something (`npx skills add` from
+  another source, a plugin install, a download piped to a shell) is refused.
+  The one exception is a vendor's own installer, vetted once and named in
+  vendor.json: `--add … --allow-install <url-prefix>` stores the prefix in
+  `allowInstall`, and an install command is allowed only when every URL in it
+  starts with that prefix. `android-cli` allows
+  `https://dl.google.com/android/cli/`, Google's installer for the CLI.
 - CI fails if any file asks an agent to install skills, plugins or scripts from
   outside this repository.
 

@@ -27,6 +27,18 @@
       "hash": "7d2e33d7183b70cf8f275a5a3d0d5ef85567fa34620dd58f7991340c841d02c3",
       "modified": false
     },
+    "android-cli": {
+      "source": "android/skills",
+      "path": "devtools/android-cli",
+      "allowInstall": [
+        "https://dl.google.com/android/cli/"
+      ],
+      "commit": "88664edd340aef678a1517617e76e46d67d35527",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE.txt",
+      "hash": "54d29e935b0a69535b3adaab3e5d4ad0a5aaa21dc8535c6df573cd3d852f1b15",
+      "modified": false
+    },
     "animate": {
       "source": "emilkowalski/skills",
       "path": "skills/animate",

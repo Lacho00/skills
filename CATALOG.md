@@ -57,7 +57,6 @@ one moves into this repository as soon as its source adds a licence.
 
 | Skill | Source | Reason |
 |---|---|---|
-| `android-cli` | [android/skills](https://github.com/android/skills) | SKILL.md pipes a downloaded install script to a shell |
 | `high-end-visual-design` | [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) | Removed upstream; the repository now ships only `design-taste-frontend` |
 | `astro` | [astrolicious/agent-skills](https://github.com/astrolicious/agent-skills) | Replaced by the own `astro-framework`, which covers Astro 6 and 7; the upstream skill predates them. No licence file either (asked in [astrolicious/agent-skills#4](https://github.com/astrolicious/agent-skills/issues/4)) |
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | Its purpose is finding and installing skills from any source, which this repository's rule forbids. This catalog takes its place |
