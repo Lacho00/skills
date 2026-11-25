@@ -1,7 +1,8 @@
 # Catalog of third-party skills
 
 Skills from other repositories worth having, grouped by stack. Projects never
-install them from their source: a skill listed here is first vendored into this
+install them from their source (except the unlicensed ones listed under
+[Exceptions](#exceptions-installed-from-their-source)): a skill listed here is first vendored into this
 repository (`node scripts/vendor.mjs --add <owner/repo> <path>`, licence
 permitting), reviewed in a PR, and then installed from Lacho00/skills like any
 other skill. A row moves to the README skills table once it is vendored.
@@ -13,60 +14,50 @@ other skill. A row moves to the README skills table once it is vendored.
 | `handoff` | [mattpocock/skills](https://github.com/mattpocock/skills) | Compact the session into a handoff doc for a fresh session |
 | `to-questionnaire` | [mattpocock/skills](https://github.com/mattpocock/skills) | Turn an open decision into a questionnaire for someone else |
 | `wizard` | [mattpocock/skills](https://github.com/mattpocock/skills) | Interactive bash wizard for steps only a human can do |
-| `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | Search skills.sh for a skill that fits a need |
-| `webapp-testing` | [anthropics/skills](https://github.com/anthropics/skills) | Test a local web app with Playwright |
 
 ## JS/TS tooling
 
 | Skill | Source | What it does |
 |---|---|---|
 | `setup-pre-commit` | [mattpocock/skills](https://github.com/mattpocock/skills) | Husky + lint-staged + typecheck + tests on commit |
-| `playwright-best-practices` | [currents-dev/playwright-best-practices-skill](https://github.com/currents-dev/playwright-best-practices-skill) | Playwright test patterns |
 
 ## Next.js / React
 
 | Skill | Source | What it does |
 |---|---|---|
-| `vercel-react-best-practices` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | React and Next.js performance rules |
-| `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Review UI against web interface guidelines |
-| `deploy-to-vercel` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Deploy to Vercel |
 | `react-patterns` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | React component and state patterns |
 | `react-testing` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | React testing patterns |
 | `nextjs-turbopack` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | Next.js with Turbopack |
-| `shadcn` | [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | shadcn/ui components |
-| `prisma-cli` | [prisma/skills](https://github.com/prisma/skills) | Prisma CLI: migrate, generate, studio |
-| `prisma-client-api` | [prisma/skills](https://github.com/prisma/skills) | Prisma Client queries |
-| `supabase` | [supabase/agent-skills](https://github.com/supabase/agent-skills) | Supabase |
-| `supabase-postgres-best-practices` | [supabase/agent-skills](https://github.com/supabase/agent-skills) | Postgres on Supabase |
-
-## UI and motion
-
-| Skill | Source | What it does |
-|---|---|---|
-| `frontend-design` | [anthropics/skills](https://github.com/anthropics/skills) | Distinctive frontend design |
-| `impeccable` | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | Design quality detector and fixes |
-| `emil-design-eng` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | UI polish and design engineering |
-| `review-animations` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | Review animations |
-| `design-taste-frontend` | [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) | Frontend design taste |
-| `accessibility` | [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills) | Accessibility checks |
-| `gsap-react` | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | GSAP in React |
 
 ## Kotlin / Android
 
 | Skill | Source | What it does |
 |---|---|---|
-| `android-cli` | [android/skills](https://github.com/android/skills) | Android CLI tooling |
-| `edge-to-edge` | [android/skills](https://github.com/android/skills) | Edge-to-edge layouts |
-| `jetpack-compose-performance` | [android/skills](https://github.com/android/skills) | Compose performance |
-| `compose-animations` | [chrisbanes/skills](https://github.com/chrisbanes/skills) | Compose animations |
 | `kotlin-coroutines-flows` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | Coroutines and Flow patterns |
 | `kotlin-testing` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | Kotlin testing |
 | `kotlin-patterns` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | Idiomatic Kotlin |
 | `android-clean-architecture` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | Android clean architecture |
 
-## Cloudflare
+## Exceptions: installed from their source
 
-| Skill | Source | What it does |
+These skills are in use but their repositories have no licence file, so they
+cannot be copied here. They skip this repository's review and CI checks, so each
+update in a project is taken on trust: read the upstream diff before running the
+skills CLI update there. Projects that need them install them from the source
+repository with the skills CLI, as the only exception to the rule above. Each
+one moves into this repository as soon as its source adds a licence.
+
+| Skill | Source | Status |
 |---|---|---|
-| `workers-best-practices` | [cloudflare/skills](https://github.com/cloudflare/skills) | Cloudflare Workers |
-| `wrangler` | [cloudflare/skills](https://github.com/cloudflare/skills) | Wrangler CLI |
+| `deploy-to-vercel` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
+| `vercel-react-best-practices` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file (frontmatter says MIT) |
+| `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
+
+## Refused
+
+| Skill | Source | Reason |
+|---|---|---|
+| `android-cli` | [android/skills](https://github.com/android/skills) | SKILL.md pipes a downloaded install script to a shell |
+| `high-end-visual-design` | [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) | Removed upstream; the repository now ships only `design-taste-frontend` |
+| `astro` | [astrolicious/agent-skills](https://github.com/astrolicious/agent-skills) | Replaced by the own `astro-framework`, which covers Astro 6 and 7; the upstream skill predates them. No licence file either (asked in [astrolicious/agent-skills#4](https://github.com/astrolicious/agent-skills/issues/4)) |
+| `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | Its purpose is finding and installing skills from any source, which this repository's rule forbids. This catalog takes its place |

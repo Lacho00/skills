@@ -1,5 +1,410 @@
 {
   "skills": {
+    "accessibility": {
+      "source": "addyosmani/web-quality-skills",
+      "path": "skills/accessibility",
+      "commit": "c6b06ad1285cd6b129b58455b2eec96ab6b67fa7",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "702c02db9dc922783af504108a0d7c077b268917b94e89a561b93ee0ce77d73d",
+      "modified": false
+    },
+    "accessibility-review": {
+      "source": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/accessibility-review",
+      "commit": "2d6f7e22dd25593f0f748010430ef86f19659735",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "7701af13a650a7e1b69fe7695992eee14b939f1a7a26fa739360bfe79550d5a0",
+      "modified": false
+    },
+    "ai-seo": {
+      "source": "coreyhaines31/marketingskills",
+      "path": "skills/ai-seo",
+      "commit": "71b8044dc40df7878563e297f77d0241d99d8795",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "7d2e33d7183b70cf8f275a5a3d0d5ef85567fa34620dd58f7991340c841d02c3",
+      "modified": false
+    },
+    "animate": {
+      "source": "emilkowalski/skills",
+      "path": "skills/animate",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "7e588e832acc0e515103548e18f0b38fb2b1a08d9217f32eec087a383aa865e4",
+      "modified": false
+    },
+    "animate-expo": {
+      "source": "emilkowalski/skills",
+      "path": "skills/animate-expo",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "80f4d09b7d5bae2a158172b84af02076445e32af3035a32678d3a5ed13090c57",
+      "modified": false
+    },
+    "animation-performance": {
+      "source": "emilkowalski/skills",
+      "path": "skills/animation-performance",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "28c5bf7bf0dfd619deaf97c5578824f1d8fc4777425b0503160989a0e0537c59",
+      "modified": false
+    },
+    "animation-vocabulary": {
+      "source": "emilkowalski/skills",
+      "path": "skills/animation-vocabulary",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "bfb35dc149492936b258bd91fd74dc12cb0fe4ccfe5b7731e6ce92da646e5dc5",
+      "modified": false
+    },
+    "apple-design": {
+      "source": "emilkowalski/skills",
+      "path": "skills/apple-design",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "dc405f6e4458822daa4a5b988fcfcf860031b689ceeae8b842b6e8d4c51fa2e5",
+      "modified": false
+    },
+    "ask-emil": {
+      "source": "emilkowalski/skills",
+      "path": "skills/ask-emil",
+      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "6833d08ddedec526b8a3a16af75cd6538f6db302151e480efc7883725d7afbe2",
+      "modified": false
+    },
+    "ask-sonner": {
+      "source": "emilkowalski/skills",
+      "path": "skills/ask-sonner",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "3ebf4d6455cb1857939711de690d757253606865aa667cbe3678bc9067ebdf25",
+      "modified": false
+    },
+    "break-ui": {
+      "source": "emilkowalski/skills",
+      "path": "skills/break-ui",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "2eb17e9b5e94fade3da604245df10d67374c0ef06d79740ee5caec5c92f20f74",
+      "modified": false
+    },
+    "choreograph": {
+      "source": "emilkowalski/skills",
+      "path": "skills/choreograph",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "9c3b841c535e325ba45106be5d148bac2db4052fe065e60002303f766442747e",
+      "modified": false
+    },
+    "cloudflare": {
+      "source": "cloudflare/skills",
+      "path": "skills/cloudflare",
+      "commit": "ff191de7d903788eceaf516a514ae7d3b56b924a",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "e61f3a25f6d99f342f73fee338781b2215f4f28712eac45b8b42127da17f97cb",
+      "modified": false
+    },
+    "compose-animations": {
+      "source": "chrisbanes/skills",
+      "path": "skills/compose-animations",
+      "commit": "6dd31d1a408f5f0e998a5db5ae539dcec21d187f",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "d3dbf1d211b55fb4cf32d85990153aaa0ab89a9d4ac3ec08b8584cb20c45614b",
+      "modified": false
+    },
+    "design-critique": {
+      "source": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/design-critique",
+      "commit": "2d6f7e22dd25593f0f748010430ef86f19659735",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "cb3f05a57aca6df7a90f74cc748c30f61d9c5c66a522e21a3a74e372ebe1c1e9",
+      "modified": false
+    },
+    "design-handoff": {
+      "source": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/design-handoff",
+      "commit": "2d6f7e22dd25593f0f748010430ef86f19659735",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "84a791d74be351af097a4339b60b059264dc4289fac7a60104a4910c9f71ecda",
+      "modified": false
+    },
+    "design-system": {
+      "source": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/design-system",
+      "commit": "2d6f7e22dd25593f0f748010430ef86f19659735",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "19d4d03e3e8f6bb75f1afbc6c83b8d5960c227f24e9761043d88cc7c3fe7f989",
+      "modified": false
+    },
+    "design-taste-frontend": {
+      "source": "leonxlnx/taste-skill",
+      "path": "skills/taste-skill",
+      "commit": "b900a8075fd7a2449bd6f414a2ae79657e95363c",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "cdc03ad12f11a518fc62296488c73f4dd48020f5fe36696ff2004d537860e3a2",
+      "modified": false
+    },
+    "edge-to-edge": {
+      "source": "android/skills",
+      "path": "system/edge-to-edge",
+      "commit": "ac4238481a4837fd6c8387f32116706293ee81a7",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE.txt",
+      "hash": "7654abe1cbb3b3ddf1960278f93fce517e5cdc5d6cd1ed4a5cc6193bed7a4cf3",
+      "modified": false
+    },
+    "emil-design-eng": {
+      "source": "emilkowalski/skills",
+      "path": "skills/emil-design-eng",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "c84af87720ec2a8b4e6f273bb1e46ad8ea85ab0499436cf767f5b50c033118fb",
+      "modified": false
+    },
+    "find-animation-opportunities": {
+      "source": "emilkowalski/skills",
+      "path": "skills/find-animation-opportunities",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "69bf93c75371670ca43a59a076c584b157ea70e4c0f380278ff114a4da7508eb",
+      "modified": false
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "path": "skills/frontend-design",
+      "commit": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+      "license": "Apache-2.0",
+      "licenseFrom": "skills/frontend-design/LICENSE.txt",
+      "hash": "83485963700bcf11d5bf78118facb301676b69d918fee2e45a95e7f1a2840f6c",
+      "modified": false
+    },
+    "gestures": {
+      "source": "emilkowalski/skills",
+      "path": "skills/gestures",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "da320f530ad3667c386557d594e0f4ebe2c849a23503b597d4267c5aa3451a87",
+      "modified": false
+    },
+    "gsap-core": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-core",
+      "commit": "96c4b013173fa9b01c059b036abc4d266a58c476",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "1a68848138df87f14b23431abf47a031ae5210966893a6db91109f6c4380e232",
+      "modified": false
+    },
+    "gsap-frameworks": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-frameworks",
+      "commit": "7f8b61e6e9be0c187e46aaa28253514b0f0a4b78",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "b39eaaf1b76c75bcb52719763d1fc0ac9afbddc6d6c062de496d7128b3963de4",
+      "modified": false
+    },
+    "gsap-performance": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-performance",
+      "commit": "96c4b013173fa9b01c059b036abc4d266a58c476",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "0c258eee4c0adc7998ae3ec9321b83e4c39cb2419479aba7686516eb2bd88706",
+      "modified": false
+    },
+    "gsap-plugins": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-plugins",
+      "commit": "5b909b9d9475884aedbca35375d12f963df4e898",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "edeb1f8daf73415f9d2eeeb0c5c3579e990dea319b00ffbad7d216dd510d79f6",
+      "modified": false
+    },
+    "gsap-react": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-react",
+      "commit": "96c4b013173fa9b01c059b036abc4d266a58c476",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "f10cc39d4c69efe2a2651d61de9b39768babfff8120a0bd25ebdcd415a72a18f",
+      "modified": false
+    },
+    "gsap-scrolltrigger": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-scrolltrigger",
+      "commit": "96c4b013173fa9b01c059b036abc4d266a58c476",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "ae0057464c2d5b52752a4392f75df3916b57b0af0838cf0ec23e6bb3ca5532b8",
+      "modified": false
+    },
+    "gsap-timeline": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-timeline",
+      "commit": "96c4b013173fa9b01c059b036abc4d266a58c476",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "ae2e4982308329e6936c52fd7691f6fa31502d259e7db99ffc387c76dcf4537f",
+      "modified": false
+    },
+    "gsap-utils": {
+      "source": "greensock/gsap-skills",
+      "path": "skills/gsap-utils",
+      "commit": "96c4b013173fa9b01c059b036abc4d266a58c476",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "60e024f1758af993b306639c14386eb62db9173df4b4094456208a0e98b47b3d",
+      "modified": false
+    },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "path": ".agents/skills/impeccable",
+      "commit": "88cfafae649164e6dc48b88d3c0c1bf6662eaade",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "7a612b7194fa64f64fdf2f8a8ba11894d7b35cc6f1f3b56331315dc953ce9910",
+      "modified": false
+    },
+    "improve-animations": {
+      "source": "emilkowalski/skills",
+      "path": "skills/improve-animations",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "7bdbb17e496b6406af1d20d58a2367ab8ce2fc41dd7442a149202e79bca32fae",
+      "modified": false
+    },
+    "jetpack-compose-performance": {
+      "source": "android/skills",
+      "path": "jetpack-compose/jetpack-compose-performance",
+      "commit": "34a817fa0efa641e625f5d7f56eea31f547c95dd",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE.txt",
+      "hash": "f837a9a9d27c9475ba342f29ef11ae97106b818000b50ab32f726783364329d5",
+      "modified": false
+    },
+    "learn-taste": {
+      "source": "emilkowalski/skills",
+      "path": "skills/learn-taste",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "951240f2017e312a92ff741aae1fd44b73db880672277b4c726a08760d02d08d",
+      "modified": false
+    },
+    "make-interfaces-feel-better": {
+      "source": "watermeloncorp/watermelon-platform",
+      "path": "skills/make-interfaces-feel-better",
+      "commit": "5b7ec0407d351126d0fe98aa7f18329d1eb2159d",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "56a18714f48d063b5dfd59424fb953c4f883161f415b047e618335411367b142",
+      "modified": false
+    },
+    "mobile-native": {
+      "source": "emilkowalski/skills",
+      "path": "skills/mobile-native",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "eb1685b3c620df5c5ac582a154469b905eb94c4aee43c14aabb00b40011c19f7",
+      "modified": false
+    },
+    "pick-ui-library": {
+      "source": "emilkowalski/skills",
+      "path": "skills/pick-ui-library",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "4806d8a79522bf6b8edc9f11d32c4dcd47e883c7669461fbf8fe726c651e9342",
+      "modified": false
+    },
+    "playwright-best-practices": {
+      "source": "currents-dev/playwright-best-practices-skill",
+      "path": "playwright-best-practices",
+      "commit": "0b75b5835a87de1fdd202ba965f3bc5a27738fdf",
+      "license": "MIT",
+      "licenseFrom": "LICENSE.md",
+      "hash": "cdafd60cce41b0d255504aca4728b0bc5221ac1a77c0620d8faf04c80a9a61fc",
+      "modified": false
+    },
+    "prisma-cli": {
+      "source": "prisma/skills",
+      "path": "prisma-cli",
+      "commit": "b491588a44bfeb9e12771d6893a8c657cf85f1e3",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "db22230cd9e5a20eb220fef05a4ecc1a340b0285704a8d9dd6526689695654ed",
+      "modified": false
+    },
+    "prisma-client-api": {
+      "source": "prisma/skills",
+      "path": "prisma-client-api",
+      "commit": "808913c1dac11dc425631c2454f7fcb2d5ade5ca",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "1dcd73b2ce46555217c35af1633bf8dcb65a196e1ba43dc1810061078b94c63c",
+      "modified": false
+    },
+    "prototype": {
+      "source": "emilkowalski/skills",
+      "path": "skills/prototype",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "dbd54d32370995fc370333f9296fa22e0c829821dc6b36b0a2df1e980963d497",
+      "modified": false
+    },
+    "remove-animations": {
+      "source": "emilkowalski/skills",
+      "path": "skills/remove-animations",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "a72710c30ab8a5b2d1f31f084b4e9a09e5da21d55f914cce36e26e9637d6ed71",
+      "modified": false
+    },
+    "research-synthesis": {
+      "source": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/research-synthesis",
+      "commit": "2d6f7e22dd25593f0f748010430ef86f19659735",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "780a2a9d007bc876537b2126edde992f0094fddd588df6c14593e084fb70e646",
+      "modified": false
+    },
+    "review-animations": {
+      "source": "emilkowalski/skills",
+      "path": "skills/review-animations",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "377831d66ed12cc8dbba95fdc26113b2fba239cf039470d68aac90167997ec7f",
+      "modified": false
+    },
     "security-audit": {
       "source": "cloudflare/security-audit-skill",
       "path": "skills/security-audit",
@@ -7,6 +412,249 @@
       "license": "MIT",
       "licenseFrom": "LICENSE",
       "hash": "33c65c52b194bff0f0f5098bc4d892e3b2da0cf98f711c1ff96fe1b1d852abed",
+      "modified": false
+    },
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "path": "skills/seo-audit",
+      "commit": "fe0678517ee73d4a4876ddbe57e43b252e87a384",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "685809beca3461199c2285b5cea264044446c6cf84e7bbde822e3fb55fcabcf5",
+      "modified": false
+    },
+    "shadcn": {
+      "source": "shadcn-ui/ui",
+      "path": "skills/shadcn",
+      "commit": "4233ed1caded8c38f4bc14b14afe1f93ebcaf966",
+      "license": "MIT",
+      "licenseFrom": "LICENSE.md",
+      "hash": "b17bd42823f6e101134b0373e392e765fbb3307d39026f1fe71cd48a1e5a73bd",
+      "modified": false
+    },
+    "supabase": {
+      "source": "supabase/agent-skills",
+      "path": "skills/supabase",
+      "commit": "c9be0e931b7930f7d02126d04774d904c381e7d7",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "eafef8ffe93d1bd1d99a8092ccf29d9607a7779e35894632126b691e387a85a5",
+      "modified": false
+    },
+    "supabase-postgres-best-practices": {
+      "source": "supabase/agent-skills",
+      "path": "skills/supabase-postgres-best-practices",
+      "commit": "1207767388a0ffb55f21fb4e6988fee96942431d",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "006a187ba8b42ce42b39dd37b1ddb61efcdcb6557b58a3b11b1e4caf3abd871b",
+      "modified": false
+    },
+    "tailwind-design-system": {
+      "source": "wshobson/agents",
+      "path": "plugins/frontend-mobile-development/skills/tailwind-design-system",
+      "commit": "51b6e0b507aa7942e36c6d33a94fc63aefc53d07",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "102ec8bc8cb0647ae90996eba301880e240a8eae8d41a7ce361d087a981d32b0",
+      "modified": false
+    },
+    "threejs-animation": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-animation",
+      "commit": "13aaa8d5c94e55945eb8763bcf803fc5a378c4c7",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "927c554570e4bd2157e4be8d44bc47c49670cdf404b290059c8842dde399c633",
+      "modified": false
+    },
+    "threejs-asset-pipeline": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-asset-pipeline",
+      "commit": "def51093866ddab5383e25fc24d746011a6bd3e1",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "af66672d79897638e4d5e4cf8d789025be94734da527428beaa06a784ee297b4",
+      "modified": false
+    },
+    "threejs-fundamentals": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-fundamentals",
+      "commit": "6ada7589fe9d88d3a95054dab89cb625bbc1aaeb",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "de8975ffcf0897a58e5b6f5fc323f1c1ed2415631d52ac2df628e933afb41006",
+      "modified": false
+    },
+    "threejs-geometry": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-geometry",
+      "commit": "6ada7589fe9d88d3a95054dab89cb625bbc1aaeb",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "cefcd76430bbed8f221064a8a42711a4049baa7cedd32b283d46a82d1be953db",
+      "modified": false
+    },
+    "threejs-interaction": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-interaction",
+      "commit": "6ada7589fe9d88d3a95054dab89cb625bbc1aaeb",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "430050c1d435018dd605d8f2667628515b8531a667d749b347f4f5ea6fb39bab",
+      "modified": false
+    },
+    "threejs-lighting": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-lighting",
+      "commit": "664c74f8078cf18e4206342212ce27f7278084cc",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "48a9b8bcc7a85b0474829d74b5438941b946d947757f13d1f5679faf623b1636",
+      "modified": false
+    },
+    "threejs-loaders": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-loaders",
+      "commit": "6ada7589fe9d88d3a95054dab89cb625bbc1aaeb",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "badc8fc6f83ab48e35eec99b05d28c6779f86ca4858ebd2e3dd0bf3695164b9e",
+      "modified": false
+    },
+    "threejs-materials": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-materials",
+      "commit": "6ada7589fe9d88d3a95054dab89cb625bbc1aaeb",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "72b8803c4f9f7ce76918152b1e0dc19dae5f3f957ff6606994a4bc4b8e3f0d9f",
+      "modified": false
+    },
+    "threejs-performance": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-performance",
+      "commit": "5e7d4c81d0fbb235c434deb82436b683b9ea7d22",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "a96aa5d6a9d5405c66947e6a8e10c7e66b91c062c55deafbb1d1893f86c36947",
+      "modified": false
+    },
+    "threejs-postprocessing": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-postprocessing",
+      "commit": "2ab5d25dcbd11fe6972a8aeb954e0b557b5a85f3",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "d032b75e551491cc0adada10b2fc5b317196e4f6e15da850fa8f5b6467269b47",
+      "modified": false
+    },
+    "threejs-react-three-fiber": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-react-three-fiber",
+      "commit": "6b45dfe78f2cc9204178cc1f3694ba9d3d972f38",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "0dd98aebd5f24ffa02723a2daad05ceeac81d70f5aea3a2a02b460e129436183",
+      "modified": false
+    },
+    "threejs-shaders": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-shaders",
+      "commit": "bb28b63882e07916facfdafe7203d9925da3e333",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "4d25311ad6cbd01a6032a78731faee9b442478786a9daa81c41774c4f17079a7",
+      "modified": false
+    },
+    "threejs-textures": {
+      "source": "CloudAI-X/threejs-skills",
+      "path": "skills/threejs-textures",
+      "commit": "6ada7589fe9d88d3a95054dab89cb625bbc1aaeb",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "19359e452a8854e07d9de99466027fb15002ca3f256b3b4aa48044e2e905f270",
+      "modified": false
+    },
+    "user-research": {
+      "source": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/user-research",
+      "commit": "4fa3cb92e2942d6594200fa8d2c800708e086072",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "a48666b4857fa10fdc99f7d13de5d934fec3e2a95ca94d6dc3af9d3ce8a8de0b",
+      "modified": false
+    },
+    "ux-copy": {
+      "source": "anthropics/knowledge-work-plugins",
+      "path": "design/skills/ux-copy",
+      "commit": "2d6f7e22dd25593f0f748010430ef86f19659735",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "650409a5c65ef94c24a739b372ac768d0e0160840a22ddf1e1ef1ebd9e4b2d2d",
+      "modified": false
+    },
+    "watermelon-ui": {
+      "source": "watermeloncorp/watermelon-platform",
+      "path": "skills/watermelon-ui",
+      "commit": "9bb2ac0e08d83970a8ea207639a2f9ba660e88a8",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "9bbee69449df246fc09557a29778237078ed26419ac681e38a8f7ae15a3fef2f",
+      "modified": false
+    },
+    "web-artifacts-builder": {
+      "source": "anthropics/skills",
+      "path": "skills/web-artifacts-builder",
+      "commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+      "license": "Apache-2.0",
+      "licenseFrom": "skills/web-artifacts-builder/LICENSE.txt",
+      "hash": "7a081b86fd5068d3ca2c4d9c059956634feff65ccbf1c39c3d34a6e5d0971139",
+      "modified": false
+    },
+    "web-perf": {
+      "source": "cloudflare/skills",
+      "path": "skills/web-perf",
+      "commit": "29de2b2f187f5ddbcbac048d1a480298e76d619a",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "0ad0124b1b794ea5ee22251c7575414c78826ab49093bedebe86ef31c72c044a",
+      "modified": false
+    },
+    "webapp-testing": {
+      "source": "anthropics/skills",
+      "path": "skills/webapp-testing",
+      "commit": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+      "license": "Apache-2.0",
+      "licenseFrom": "skills/webapp-testing/LICENSE.txt",
+      "hash": "48cd9a742a59250edec6db89cf081ef5465f365e2133f6d6c5e29c380b754b7d",
+      "modified": false
+    },
+    "workers-best-practices": {
+      "source": "cloudflare/skills",
+      "path": "skills/workers-best-practices",
+      "commit": "c9a7335f7e82b701108d4bdb17d7fbaab163cbd2",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "8611733d093a292f4d00bc35362e5a43b3bf3f07ce6268396d12fb9774e90b07",
+      "modified": false
+    },
+    "wrangler": {
+      "source": "cloudflare/skills",
+      "path": "skills/wrangler",
+      "commit": "29de2b2f187f5ddbcbac048d1a480298e76d619a",
+      "license": "Apache-2.0",
+      "licenseFrom": "LICENSE",
+      "hash": "99799eeb8ed948ad385090a14ff2fd5015842b1f6c3e28ffa8a09f0ddb0d6c84",
+      "modified": false
+    },
+    "write-swift": {
+      "source": "emilkowalski/skills",
+      "path": "skills/write-swift",
+      "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "31527d5583924e1aad00007dfe324e12102eae7d142f9a072f7124d206854e02",
       "modified": false
     }
   }
