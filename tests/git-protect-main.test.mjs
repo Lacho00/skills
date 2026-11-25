@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readdirSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
+import { existsSync, lstatSync, mkdtempSync, readdirSync, readFileSync, symlinkSync, writeFileSync, chmodSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -118,6 +118,21 @@ test('a foreign pre-push hook is kept unless --replace, then backed up', () => {
   const replaced = install('--replace', work);
   assert.equal(replaced.status, 0, replaced.stderr);
   assert.ok(readdirSync(join(work, '.git', 'hooks')).some((f) => f.startsWith('pre-push.bak.')));
+  assert.ok(refused(push(work, 'origin', 'HEAD:main')));
+});
+
+test('--replace on a symlinked hook leaves the shared target untouched', () => {
+  const { root, work } = setup();
+  const shared = join(root, 'shared-pre-push');
+  writeFileSync(shared, '#!/bin/sh\nexit 0\n');
+  chmodSync(shared, 0o755);
+  const hook = join(work, '.git', 'hooks', 'pre-push');
+  symlinkSync(shared, hook);
+
+  const r = install('--replace', work);
+  assert.equal(r.status, 0, r.stderr);
+  assert.equal(readFileSync(shared, 'utf8'), '#!/bin/sh\nexit 0\n');
+  assert.ok(!lstatSync(hook).isSymbolicLink());
   assert.ok(refused(push(work, 'origin', 'HEAD:main')));
 });
 

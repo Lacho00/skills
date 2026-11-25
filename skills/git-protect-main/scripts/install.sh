@@ -46,9 +46,12 @@ for repo in "$@"; do
     echo "$repo: previous hook saved as $backup"
   fi
 
+  # Copy then rename: replaces a symlinked hook with a file instead of writing
+  # through the link into a hook other repos share, and never leaves a half-written hook.
   mkdir -p "$hooks"
-  cp "$source_hook" "$target"
-  chmod +x "$target"
+  cp "$source_hook" "$target.tmp.$$"
+  chmod +x "$target.tmp.$$"
+  mv -f "$target.tmp.$$" "$target"
   if [ -z "$(git -C "$repo" config --get guardrails.protected || true)" ]; then
     git -C "$repo" config guardrails.protected main
   fi
