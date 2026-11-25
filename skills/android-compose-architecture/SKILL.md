@@ -50,6 +50,7 @@ class AppContainer(context: Context) {
     val appContext: Context = context.applicationContext
     val db: AppDatabase by lazy { AppDatabase.open(appContext) }
     val clock: Clock = Clock.systemUTC()
+    val api: NoteApi by lazy { NoteApi(OkHttpClient(), baseUrl = BuildConfig.API_URL) }
 
     /** Every path that writes synced data takes this lock: screen, worker, in-process send. */
     val syncLock = Mutex()
@@ -217,7 +218,7 @@ try {
   `ANDROID_SERIAL=<serial>`) to anything that installs or runs.
 - `grep -rnE 'runBlocking|GlobalScope|\.get\(\)|MutableSharedFlow<' app/src/main`
   returns only lines you can justify.
-- `grep -rlE '^import (android|androidx)\.' app/src/main/java/*/*/core` (or
-  the project's `core/` path) returns nothing.
+- `test -d app/src/main/java && grep -rlE '^import (android|androidx)\.' --include='*.kt' app/src/main/java | grep '/core/'`
+  prints nothing (use `app/src/main/kotlin` if the sources live there).
 - The feature works with the network off: the pending state shows, and
   turning the network on sends once.
