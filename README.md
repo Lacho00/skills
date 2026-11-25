@@ -5,8 +5,8 @@ My own Claude Code skills, grouped by stack and installed per project with
 
 This repository is the only install source for my projects. Third-party skills
 are vendored: copied here unmodified, with their licence, by
-`scripts/vendor.mjs`, and recorded in [vendor.json](vendor.json). Nothing is ever
-installed from upstream. [CATALOG.md](CATALOG.md) lists third-party skills that
+`scripts/vendor.mjs`, and recorded in [vendor.json](vendor.json). Nothing is installed from upstream, except the few in-use skills whose source has
+no licence file ([CATALOG.md exceptions](CATALOG.md#exceptions-installed-from-their-source)). [CATALOG.md](CATALOG.md) lists third-party skills that
 are candidates for vendoring.
 
 ## Install a skill into a project
