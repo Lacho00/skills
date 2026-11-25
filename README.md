@@ -3,11 +3,13 @@
 My own Claude Code skills, grouped by stack and installed per project with
 [skills.sh](https://skills.sh) instead of globally.
 
-This repository is the only install source for my projects. Third-party skills
-are vendored: copied here unmodified, with their licence, by
-`scripts/vendor.mjs`, and recorded in [vendor.json](vendor.json). Nothing is installed from upstream, except the few in-use skills whose source has
-no licence file ([CATALOG.md exceptions](CATALOG.md#exceptions-installed-from-their-source)). [CATALOG.md](CATALOG.md) lists third-party skills that
-are candidates for vendoring.
+This repository is the install source for my projects. Third-party skills are
+vendored: copied here unmodified, with their licence, by `scripts/vendor.mjs`,
+and recorded in [vendor.json](vendor.json). The only skills installed straight
+from upstream are the few in-use ones whose source has no licence file; they are
+listed under [exceptions](CATALOG.md#exceptions-installed-from-their-source) in
+[CATALOG.md](CATALOG.md), which also lists third-party skills that are
+candidates for vendoring.
 
 ## Install a skill into a project
 
@@ -144,7 +146,7 @@ changes, run `npx skills update` in the project.
 
 1. Copy `templates/SKILL.md` to `skills/<name>/SKILL.md`.
 2. Name it in kebab-case with a stack prefix: `kotlin-…`, `next-…`, `react-…`,
-   `general-…`. The frontmatter `name` must equal the folder name.
+   `astro-…`, `general-…`. Vendored skills keep their upstream name. The frontmatter `name` must equal the folder name.
 3. Write the `description` as "Use when …" (max 1024 characters). It is what
    decides when the skill loads.
 4. Keep skills generic: no client, project, host or path names.

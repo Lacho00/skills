@@ -94,9 +94,10 @@ server island: rendered on demand after the page, so it needs an adapter.
 - On-demand rendering needs an adapter: `npx astro add node` (or `cloudflare`,
   `netlify`, `vercel`). `astro add` edits the config and installs the package;
   review its diff.
-- Environment variables: prefer the typed schema, `env: { schema: { NAME: envField.string({ context, access }) } }`
-  in the config (`envField` from `astro/config`), read through `astro:env/client`
-  or `astro:env/server`. Otherwise `import.meta.env`; only `PUBLIC_` variables
+- Environment variables: prefer the typed schema in the config (`envField` from
+  `astro/config`), with literal `context` and `access` values:
+  `env: { schema: { API_URL: envField.string({ context: 'client', access: 'public' }), API_SECRET: envField.string({ context: 'server', access: 'secret' }) } }`.
+  Read them through `astro:env/client` or `astro:env/server`; client secrets are not allowed. Otherwise `import.meta.env`; only `PUBLIC_` variables
   reach the client, and values are inlined at build time.
 
 ## CLI

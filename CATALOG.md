@@ -41,7 +41,9 @@ other skill. A row moves to the README skills table once it is vendored.
 ## Exceptions: installed from their source
 
 These skills are in use but their repositories have no licence file, so they
-cannot be copied here. Projects that need them install them from the source
+cannot be copied here. They skip this repository's review and CI checks, so each
+update in a project is taken on trust: read the upstream diff before running the
+skills CLI update there. Projects that need them install them from the source
 repository with the skills CLI, as the only exception to the rule above. Each
 one moves into this repository as soon as its source adds a licence.
 
@@ -51,7 +53,7 @@ one moves into this repository as soon as its source adds a licence.
 | `deploy-to-vercel` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
 | `vercel-react-best-practices` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file (frontmatter says MIT) |
 | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
-| `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | No licence file |
+| `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | No licence file. Its whole purpose is installing skills from other sources, which this repository's rule forbids; review whether to keep it |
 
 ## Refused
 
