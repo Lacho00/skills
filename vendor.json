@@ -1,0 +1,13 @@
+{
+  "skills": {
+    "security-audit": {
+      "source": "cloudflare/security-audit-skill",
+      "path": "skills/security-audit",
+      "commit": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "33c65c52b194bff0f0f5098bc4d892e3b2da0cf98f711c1ff96fe1b1d852abed",
+      "modified": false
+    }
+  }
+}

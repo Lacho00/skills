@@ -1,13 +1,10 @@
 # Catalog of third-party skills
 
-Skills from other repositories worth installing per project, grouped by stack.
-Nothing here is copied into this repo: install from the source, and the
-project's `skills-lock.json` pins the commit.
-
-```bash
-npx skills add <source> --skill <name>   # install into the current project
-npx skills update                         # move a project to the latest commits
-```
+Skills from other repositories worth having, grouped by stack. Projects never
+install them from their source: a skill listed here is first vendored into this
+repository (`node scripts/vendor.mjs --add <owner/repo> <path>`, licence
+permitting), reviewed in a PR, and then installed from Lacho00/skills like any
+other skill. A row moves to the README skills table once it is vendored.
 
 ## General
 
