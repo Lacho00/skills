@@ -334,6 +334,13 @@ test('findInstallCommands skips installs whose every URL is under an allowed pre
     assert.ok(findInstallCommands(line, allow).length > 0, line);
 });
 
+test('findInstallCommands stays fast on a long URL that ends in a refused character', () => {
+  const start = Date.now();
+  const line = `curl https://dl.example.com/cli/${'a'.repeat(5000)}! | bash`;
+  assert.ok(findInstallCommands(line, ['https://dl.example.com/cli/']).length > 0);
+  assert.ok(Date.now() - start < 500, `took ${Date.now() - start} ms`);
+});
+
 test('checkInstallCommands honours allowInstall from vendor.json', () => {
   const root = ourRepo();
   mkdirSync(join(root, 'skills', 'tool'));

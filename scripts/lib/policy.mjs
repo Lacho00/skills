@@ -20,9 +20,11 @@ const RULES = [
 // in the same shell. A vetted URL uses only unreserved characters (no shell
 // metacharacters, query, percent escapes, userinfo or "."/".." segments) and
 // starts with one of the skill's prefixes.
-const SAFE_URL = /^https:\/\/[a-z0-9.-]+\/(?:[A-Za-z0-9_~-][A-Za-z0-9._~-]*\/?)*$/;
-const vettedUrl = (u, allow) =>
-  SAFE_URL.test(u) && !/\/\.{1,2}(?:\/|$)/.test(u) && allow.some((p) => u.startsWith(p));
+// Every path segment starts with "/" and a non-dot character, so the pattern has
+// one way to split a URL (no catastrophic backtracking) and no "."/".." segments.
+const SAFE_URL = /^https:\/\/[a-z0-9.-]+(?:\/[A-Za-z0-9_~-][A-Za-z0-9._~-]*)*\/?$/;
+const MAX_URL = 300;
+const vettedUrl = (u, allow) => u.length <= MAX_URL && SAFE_URL.test(u) && allow.some((p) => u.startsWith(p));
 
 // The one shape of an allowed command line: an optional Markdown bullet and
 // plain-text label, then `curl|wget [-flags] <url> [\]| [sudo] sh|bash|zsh|dash`
