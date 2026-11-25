@@ -49,11 +49,9 @@ one moves into this repository as soon as its source adds a licence.
 
 | Skill | Source | Status |
 |---|---|---|
-| `astro` | [astrolicious/agent-skills](https://github.com/astrolicious/agent-skills) | No licence file (frontmatter says MIT); asked upstream in [astrolicious/agent-skills#4](https://github.com/astrolicious/agent-skills/issues/4). Own replacement: `astro-framework` |
 | `deploy-to-vercel` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
 | `vercel-react-best-practices` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file (frontmatter says MIT) |
 | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
-| `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | No licence file. Its whole purpose is installing skills from other sources, which this repository's rule forbids; review whether to keep it |
 
 ## Refused
 
@@ -61,3 +59,5 @@ one moves into this repository as soon as its source adds a licence.
 |---|---|---|
 | `android-cli` | [android/skills](https://github.com/android/skills) | SKILL.md pipes a downloaded install script to a shell |
 | `high-end-visual-design` | [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) | Removed upstream; the repository now ships only `design-taste-frontend` |
+| `astro` | [astrolicious/agent-skills](https://github.com/astrolicious/agent-skills) | Replaced by the own `astro-framework`, which covers Astro 6 and 7; the upstream skill predates them. No licence file either (asked in [astrolicious/agent-skills#4](https://github.com/astrolicious/agent-skills/issues/4)) |
+| `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | Its purpose is finding and installing skills from any source, which this repository's rule forbids. This catalog takes its place |
