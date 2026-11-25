@@ -60,7 +60,10 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--json') opts.json = true;
-    else if (a === '--ref') opts.ref = argv[++i];
+    else if (a === '--ref') {
+      opts.ref = argv[++i];
+      if (!opts.ref || opts.ref.startsWith('-')) throw new Error('--ref needs a value');
+    }
     else if (a.startsWith('-')) throw new Error(`unknown option ${a}`);
     else opts.dir = a;
   }
