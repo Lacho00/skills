@@ -92,7 +92,7 @@ function openPr(pr, dryRun) {
 
   let remoteTree = null;
   try {
-    git('fetch', '--quiet', 'origin', pr.branch);
+    run('git', ['fetch', '--quiet', 'origin', pr.branch], { stdio: 'ignore' });
     remoteTree = git('rev-parse', 'FETCH_HEAD^{tree}');
   } catch {
     // branch not on the remote yet
