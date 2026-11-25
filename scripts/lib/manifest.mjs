@@ -22,8 +22,9 @@ export const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const SOURCE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const SHA = /^[0-9a-f]{40}$/;
 const HASH = /^[0-9a-f]{64}$/;
-// https, a host, and a path ending in "/", so a prefix cannot match a longer host or sibling path.
-const INSTALL_PREFIX = /^https:\/\/[a-z0-9.-]+\.[a-z]{2,}\/(?:[\w.~-]+\/)*$/i;
+// https, a host, and a path ending in "/" without "." or ".." segments, so a
+// prefix cannot match a longer host, a sibling path or a parent directory.
+const INSTALL_PREFIX = /^https:\/\/[a-z0-9.-]+\.[a-z]{2,}\/(?:(?!\.{1,2}\/)[\w.~-]+\/)*$/i;
 
 export function readManifest(rootDir) {
   const file = join(rootDir, MANIFEST);
