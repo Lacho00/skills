@@ -28,6 +28,9 @@ other skill. A row moves to the README skills table once it is vendored.
 | `react-patterns` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | React component and state patterns |
 | `react-testing` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | React testing patterns |
 | `nextjs-turbopack` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | Next.js with Turbopack |
+| `animated-component-libraries` | [freshtechbro/claudedesignskills](https://github.com/freshtechbro/claudedesignskills) | Animated React component libraries, React Bits among them |
+| `aceternity-ui` | [secondsky/claude-skills](https://github.com/secondsky/claude-skills) | Aceternity UI animated components for React and Next.js. Path: `plugins/aceternity-ui/` |
+| `motionsites-web-builder` | [Motionsites-AI/claude-skill](https://github.com/Motionsites-AI/claude-skill) | MotionSites motion-heavy site builder. Vendor without `examples/` and `media/`, which are not MIT. Check first whether it needs their paid service |
 
 ## Kotlin / Android
 
