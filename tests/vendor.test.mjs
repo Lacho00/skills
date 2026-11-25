@@ -68,6 +68,11 @@ test('identifyLicense recognises allowed licences and rejects others', () => {
   assert.equal(identifyLicense('Redistribution and use in source and binary forms, with or without\nmodification, are permitted provided... Neither the name'), 'BSD-3-Clause');
   assert.equal(identifyLicense(GPL), null);
   assert.equal(identifyLicense(''), null);
+  assert.equal(identifyLicense(`${MIT}\n"Commons Clause" License Condition v1.0\n`), null);
+  assert.equal(
+    identifyLicense('Redistribution and use in source and binary forms, with or without modification, are permitted... All advertising materials mentioning'),
+    null,
+  );
 });
 
 test('hashFolder ignores metadata.json and CRLF differences', () => {
@@ -203,7 +208,9 @@ test('update keeps the old copy when the licence changes to a non-redistributabl
   const root = ourRepo();
   withUpstream((up) => add(root, up, { source: 'acme/kit', path: 'skills/tool' }));
   gh.commit('acme/kit', { LICENSE: GPL, 'skills/tool/SKILL.md': SKILL('tool', 'changed') });
-  withUpstream((up) => assert.throws(() => update(root, up, { names: [], source: null }), /old copy kept/));
+  const results = withUpstream((up) => update(root, up, { names: [], source: null }));
+  assert.equal(results[0].status, 'refused');
+  assert.match(results[0].error, /old copy kept/);
   assert.equal(readManifest(root).skills.tool.commit, first);
   assert.equal(readFileSync(join(root, 'skills', 'tool', 'LICENSE'), 'utf8'), MIT);
   assert.deepEqual(checkRepo(root).errors, []);
@@ -254,4 +261,37 @@ test('checkVendor reports an invalid vendor.json entry', () => {
   writeFileSync(join(root, 'vendor.json'), JSON.stringify({ skills: { tool: { source: 'nope', path: '../x', commit: 'abc', license: 'GPL-3.0' } } }));
   const errors = checkVendor(root);
   for (const field of ['source', 'path', 'commit', 'license', 'hash']) assert.ok(errors.some((e) => e.includes(field)), field);
+});
+
+test('one refused skill does not stop the others', () => {
+  const gh = fakeGithub();
+  gh.repo('acme/bad', { LICENSE: MIT, 'a-tool/SKILL.md': SKILL('a-tool') });
+  gh.repo('acme/good', { LICENSE: MIT, 'b-tool/SKILL.md': SKILL('b-tool') });
+  const root = ourRepo();
+  withUpstream((up) => {
+    add(root, up, { source: 'acme/bad', path: 'a-tool' });
+    add(root, up, { source: 'acme/good', path: 'b-tool' });
+  });
+  gh.commit('acme/bad', { LICENSE: GPL, 'a-tool/SKILL.md': SKILL('a-tool', 'x') });
+  const second = gh.commit('acme/good', { 'b-tool/SKILL.md': SKILL('b-tool', 'y') });
+  const results = withUpstream((up) => update(root, up, { names: [], source: null }));
+  assert.deepEqual(results.map((r) => r.status), ['refused', 'updated']);
+  assert.equal(readManifest(root).skills['b-tool'].commit, second);
+
+  gh.commit('acme/bad', {}, ['a-tool/SKILL.md', 'LICENSE']);
+  const rows = withUpstream((up) => check(root, up, { names: [], source: null }));
+  assert.deepEqual(rows.map((r) => r.status), ['error', 'current']);
+});
+
+test('--source and --name need a value', () => {
+  for (const args of [['--update', '--source'], ['--update', '--source', '--json'], ['--add', 'a/b', 'p', '--name']]) {
+    let err;
+    try {
+      execFileSync(process.execPath, ['scripts/vendor.mjs', ...args], { stdio: 'pipe', env: { ...process.env, VENDOR_ROOT: ourRepo() } });
+    } catch (e) {
+      err = e;
+    }
+    assert.ok(err, args.join(' '));
+    assert.match(String(err.stderr), /needs a value/);
+  }
 });

@@ -43,7 +43,8 @@ export class Upstream {
     return this.clones.get(source);
   }
   latest(source, path) {
-    const sha = git(this.repo(source), 'log', '-1', '--format=%H', 'HEAD', '--', path).trim();
+    const repo = this.repo(source);
+    const sha = git(repo, 'ls-tree', 'HEAD', '--', path).trim() && git(repo, 'log', '-1', '--format=%H', 'HEAD', '--', path).trim();
     if (!sha) throw new Error(`${source}: path "${path}" not found on the default branch`);
     return sha;
   }
@@ -126,10 +127,15 @@ export function check(rootDir, up, opts) {
   const manifest = readManifest(rootDir);
   return select(manifest, opts).map((name) => {
     const e = manifest.skills[name];
-    const latest = up.latest(e.source, e.path);
-    const behind = latest !== e.commit;
-    const status = e.modified ? (behind ? 'modified-behind' : 'modified') : behind ? 'behind' : 'current';
-    return { name, source: e.source, path: e.path, commit: e.commit, latest, status };
+    const row = { name, source: e.source, path: e.path, commit: e.commit, latest: null };
+    try {
+      row.latest = up.latest(e.source, e.path);
+    } catch (err) {
+      return { ...row, status: 'error', error: err.message };
+    }
+    const behind = row.latest !== e.commit;
+    if (e.modified) return { ...row, status: behind ? 'modified-behind' : 'modified' };
+    return { ...row, status: behind ? 'behind' : 'current' };
   });
 }
 
@@ -142,15 +148,20 @@ export function update(rootDir, up, opts) {
       results.push({ name, status: 'skipped-modified' });
       continue;
     }
-    const latest = up.latest(e.source, e.path);
-    if (latest === e.commit && existsSync(join(rootDir, 'skills', name))) {
-      results.push({ name, status: 'current' });
-      continue;
+    // One refused skill (licence change, install command, path gone) must not stop the others.
+    try {
+      const latest = up.latest(e.source, e.path);
+      if (latest === e.commit && existsSync(join(rootDir, 'skills', name))) {
+        results.push({ name, status: 'current' });
+        continue;
+      }
+      manifest.skills[name] = copySkill(rootDir, up, name, e, latest);
+      writeManifest(rootDir, manifest);
+      saveNotice(rootDir, manifest);
+      results.push({ name, status: 'updated', from: e.commit, to: latest });
+    } catch (err) {
+      results.push({ name, status: 'refused', error: err.message });
     }
-    manifest.skills[name] = copySkill(rootDir, up, name, e, latest);
-    writeManifest(rootDir, manifest);
-    saveNotice(rootDir, manifest);
-    results.push({ name, status: 'updated', from: e.commit, to: latest });
   }
   return results;
 }
@@ -179,8 +190,11 @@ function parseArgs(argv) {
       if (opts.mode) throw new Error('use one of --add, --check, --update, --notice');
       opts.mode = a.slice(2);
     } else if (a === '--json') opts.json = true;
-    else if (a === '--source') opts.source = argv[++i];
-    else if (a === '--name') opts.name = argv[++i];
+    else if (a === '--source' || a === '--name') {
+      const value = argv[++i];
+      if (!value || value.startsWith('-')) throw new Error(`${a} needs a value`);
+      opts[a.slice(2)] = value;
+    }
     else if (a.startsWith('-')) throw new Error(`unknown option ${a}`);
     else opts.names.push(a);
   }
@@ -202,15 +216,23 @@ function main(argv) {
       if (!source || !path) throw new Error('--add needs <owner/repo> <path-in-repo>');
       const r = add(rootDir, up, { source, path, name: opts.name });
       console.log(`added ${r.name} from ${r.source}@${r.commit.slice(0, 7)} (${r.license})`);
-    } else if (opts.mode === 'check') {
+      return 0;
+    }
+    if (opts.mode === 'check') {
       const rows = check(rootDir, up, opts);
       if (opts.json) console.log(JSON.stringify(rows, null, 2));
-      else for (const r of rows) console.log(`${r.status.padEnd(16)} ${r.name} ${r.source} ${r.commit.slice(0, 7)} -> ${r.latest.slice(0, 7)}`);
-    } else {
-      for (const r of update(rootDir, up, opts))
-        console.log(r.status === 'updated' ? `updated ${r.name} ${r.from.slice(0, 7)} -> ${r.to.slice(0, 7)}` : `${r.status} ${r.name}`);
+      else
+        for (const r of rows)
+          console.log(`${r.status.padEnd(16)} ${r.name} ${r.source} ${r.commit.slice(0, 7)} -> ${r.latest ? r.latest.slice(0, 7) : r.error}`);
+      return rows.some((r) => r.status === 'error') ? 1 : 0;
     }
-    return 0;
+    const results = update(rootDir, up, opts);
+    for (const r of results) {
+      if (r.status === 'updated') console.log(`updated ${r.name} ${r.from.slice(0, 7)} -> ${r.to.slice(0, 7)}`);
+      else if (r.status === 'refused') console.error(`refused ${r.name}: ${r.error}`);
+      else console.log(`${r.status} ${r.name}`);
+    }
+    return results.some((r) => r.status === 'refused') ? 1 : 0;
   } finally {
     up.close();
   }

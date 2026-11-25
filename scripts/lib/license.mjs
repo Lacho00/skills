@@ -9,9 +9,14 @@ export const LICENSE_FILES = ['LICENSE', 'LICENSE.md', 'LICENSE.txt', 'LICENCE',
 
 const squash = (text) => text.replace(/\s+/g, ' ');
 
-// Returns an SPDX id from ALLOWED_LICENSES, or null when the text is not one of them.
+// Wording that adds restrictions to a permissive text, or belongs to a copyleft licence.
+const RESTRICTIVE = /Commons Clause|advertising materials|GNU (?:Lesser |Affero )?General Public|Affero|Server Side Public|Business Source|non-?commercial/i;
+
+// Returns an SPDX id from ALLOWED_LICENSES, or null when the text is not one of
+// them (including a permissive text with extra restrictions added).
 export function identifyLicense(text) {
   const t = squash(text);
+  if (RESTRICTIVE.test(t)) return null;
   if (/Apache License,? Version 2\.0/i.test(t) && /Licensed under the Apache License|TERMS AND CONDITIONS FOR USE/i.test(t)) return 'Apache-2.0';
   if (/Permission is hereby granted, free of charge, to any person obtaining a copy/i.test(t)) return 'MIT';
   if (/Permission to use, copy, modify, and\/or distribute this software for any purpose/i.test(t)) return 'ISC';
