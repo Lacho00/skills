@@ -68,7 +68,7 @@ export function noticeBody(r) {
   ].join('\n');
 }
 
-const run = (cmd, args, opts = {}) => execFileSync(cmd, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'], ...opts }).trim();
+const run = (cmd, args, opts = {}) => (execFileSync(cmd, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'], ...opts }) ?? '').trim();
 const git = (...args) => run('git', args);
 const gh = (...args) => run('gh', args);
 
