@@ -31,7 +31,7 @@ changes, run `npx skills update` in the project.
    decides when the skill loads.
 4. Keep skills generic: no client, project, host or path names.
 5. If the skill adapts someone else's work, add the source to [NOTICE](NOTICE).
-6. Run `npm test && npm run check`, then open a PR. CI runs the same checks.
+6. Run `npm ci && npm test && npm run check`, then open a PR. CI runs the same checks.
 
 ## License
 

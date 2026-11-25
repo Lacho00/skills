@@ -4,19 +4,21 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseDocument } from 'yaml';
 
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const MAX_DESCRIPTION = 1024;
 
+// Returns { fields } on success, { error } when the frontmatter is missing or not valid YAML.
 function frontmatter(text) {
-  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) return null;
-  const fields = {};
-  for (const line of match[1].split(/\r?\n/)) {
-    const kv = line.match(/^([A-Za-z_-]+):\s*(.*)$/);
-    if (kv) fields[kv[1]] = kv[2].trim().replace(/^(["'])(.*)\1$/, '$2');
-  }
-  return fields;
+  const match = text.match(/^﻿?---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/);
+  if (!match) return { error: 'SKILL.md has no frontmatter' };
+  const doc = parseDocument(match[1], { uniqueKeys: true });
+  if (doc.errors.length) return { error: `invalid YAML frontmatter: ${doc.errors[0].message.split('\n')[0]}` };
+  const fields = doc.toJS();
+  if (!fields || typeof fields !== 'object' || Array.isArray(fields))
+    return { error: 'frontmatter must be a YAML mapping' };
+  return { fields };
 }
 
 export function checkSkills(rootDir) {
@@ -31,13 +33,13 @@ export function checkSkills(rootDir) {
       errors.push(`${folder}: missing SKILL.md`);
       continue;
     }
-    const fm = frontmatter(readFileSync(file, 'utf8'));
-    if (!fm) {
-      errors.push(`${folder}: SKILL.md has no frontmatter`);
+    const { fields: fm, error } = frontmatter(readFileSync(file, 'utf8'));
+    if (error) {
+      errors.push(`${folder}: ${error}`);
       continue;
     }
     if (fm.name !== folder) errors.push(`${folder}: frontmatter name "${fm.name ?? ''}" must equal folder name`);
-    if (!fm.description) errors.push(`${folder}: description is missing or empty`);
+    if (typeof fm.description !== 'string' || !fm.description.trim()) errors.push(`${folder}: description is missing or empty`);
     else if (fm.description.length > MAX_DESCRIPTION)
       errors.push(`${folder}: description is ${fm.description.length} chars, max ${MAX_DESCRIPTION}`);
   }

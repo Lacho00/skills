@@ -63,3 +63,45 @@ test('folder without SKILL.md fails', () => {
   assert.equal(r.errors.length, 1);
   assert.match(r.errors[0], /SKILL\.md/);
 });
+
+const raw = (folder, frontmatterBody) => ({ [folder]: `---\n${frontmatterBody}\n---\n\n# Body\n` });
+
+test('folded block description over 1024 chars fails', () => {
+  const r = checkSkills(repo(raw('kotlin-example', `name: kotlin-example\ndescription: >\n  ${'x'.repeat(1500)}`)));
+  assert.ok(r.errors.some((e) => /1024/.test(e)), r.errors.join('\n'));
+});
+
+test('plain scalar continued on next line is measured whole', () => {
+  const r = checkSkills(repo(raw('kotlin-example', `name: kotlin-example\ndescription: first\n  ${'x'.repeat(1500)}`)));
+  assert.ok(r.errors.some((e) => /1024/.test(e)), r.errors.join('\n'));
+});
+
+test('invalid YAML (colon-space in plain scalar) fails', () => {
+  const r = checkSkills(repo(raw('kotlin-example', 'name: kotlin-example\ndescription: Use when: testing')));
+  assert.ok(r.errors.some((e) => /YAML/.test(e)), r.errors.join('\n'));
+});
+
+test('duplicate keys fail', () => {
+  const r = checkSkills(repo(raw('kotlin-example', 'name: kotlin-example\ndescription: a\ndescription: b')));
+  assert.ok(r.errors.some((e) => /YAML/.test(e)), r.errors.join('\n'));
+});
+
+test('missing name fails', () => {
+  const r = checkSkills(repo(raw('kotlin-example', 'description: Use when testing.')));
+  assert.ok(r.errors.some((e) => /name/.test(e)), r.errors.join('\n'));
+});
+
+test('inline comment and quoted values are read as YAML', () => {
+  const r = checkSkills(repo(raw('kotlin-example', "name: kotlin-example # note\ndescription: 'Use when: testing.'")));
+  assert.deepEqual(r.errors, []);
+});
+
+test('BOM and CRLF frontmatter is accepted', () => {
+  const r = checkSkills(repo({ 'kotlin-example': '﻿---\r\nname: kotlin-example\r\ndescription: Use when testing.\r\n---\r\n' }));
+  assert.deepEqual(r.errors, []);
+});
+
+test('a line starting with ---- inside a block does not close frontmatter', () => {
+  const r = checkSkills(repo(raw('kotlin-example', `name: kotlin-example\ndescription: |\n  a\n----\n  ${'x'.repeat(1500)}`)));
+  assert.ok(r.errors.length > 0);
+});

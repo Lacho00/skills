@@ -9,7 +9,7 @@ Node script validates every skill's frontmatter and runs in CI, so later skill P
 are checked automatically. The template lives outside `skills/` so skills.sh never
 offers it for install.
 
-**Tech Stack:** Markdown, Node 24 (no dependencies), GitHub Actions, `gh`.
+**Tech Stack:** Markdown, Node 24 (one dev dependency: yaml), GitHub Actions, `gh`.
 
 **Spec:** `docs/superpowers/specs/2026-11-25-skills-repo-design.md`
 
