@@ -8,7 +8,9 @@
 //     "license": "MIT",                SPDX id, one of ALLOWED_LICENSES
 //     "licenseFrom": "LICENSE",        where the licence file was taken from, relative to the repo root
 //     "hash": "<sha256>",              hashFolder() of skills/<name> as copied
-//     "modified": false                true once the copy is edited by hand; updates then only notify
+//     "modified": false,               true once the copy is edited by hand; updates then only notify
+//     "allowInstall": ["https://…/"]   optional: URL prefixes of installers vetted for this skill; an
+//                                      install command whose every URL starts with one of them is allowed
 //   }
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -20,6 +22,8 @@ export const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const SOURCE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const SHA = /^[0-9a-f]{40}$/;
 const HASH = /^[0-9a-f]{64}$/;
+// https, a host, and a path ending in "/", so a prefix cannot match a longer host or sibling path.
+const INSTALL_PREFIX = /^https:\/\/[a-z0-9.-]+\.[a-z]{2,}\/(?:[\w.~-]+\/)*$/i;
 
 export function readManifest(rootDir) {
   const file = join(rootDir, MANIFEST);
@@ -47,5 +51,8 @@ export function validateEntry(name, e) {
   if (typeof e.licenseFrom !== 'string' || !e.licenseFrom) errors.push('licenseFrom is missing');
   if (typeof e.hash !== 'string' || !HASH.test(e.hash)) errors.push('hash must be a sha256 hex digest');
   if (e.modified !== undefined && typeof e.modified !== 'boolean') errors.push('modified must be true or false');
+  if (e.allowInstall !== undefined &&
+    (!Array.isArray(e.allowInstall) || !e.allowInstall.length || !e.allowInstall.every((p) => typeof p === 'string' && INSTALL_PREFIX.test(p))))
+    errors.push('allowInstall must be a non-empty list of https URL prefixes ending in "/" with a path');
   return errors;
 }

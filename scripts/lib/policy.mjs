@@ -1,7 +1,8 @@
 // Nothing in this repository may tell an agent to install skills, plugins or
 // scripts from outside it. The only allowed install source is Lacho00/skills.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
+import { readManifest } from './manifest.mjs';
 
 const RULES = [
   {
@@ -14,11 +15,22 @@ const RULES = [
   { re: /https?:\/\/\S+\/install(?:er)?\.(?:sh|ps1)\b/gi, why: 'install script URL' },
 ];
 
-// Install commands found in `text`, as [{ line, why, match }].
-export function findInstallCommands(text) {
+const URL = /https?:\/\/[^\s|'"`)]+/gi;
+
+// A match is allowed only when it names at least one URL and every URL in it
+// starts with one of the vetted prefixes (vendor.json "allowInstall").
+const isAllowed = (match, allow) => {
+  const urls = match.match(URL) ?? [];
+  return urls.length > 0 && urls.every((u) => allow.some((p) => u.startsWith(p)));
+};
+
+// Install commands found in `text`, as [{ line, why, match }]. `allow` lists
+// URL prefixes of installers vetted for this skill.
+export function findInstallCommands(text, allow = []) {
   const hits = [];
   for (const { re, why } of RULES) {
     for (const m of text.matchAll(re)) {
+      if (allow.length && isAllowed(m[0], allow)) continue;
       const line = text.slice(0, m.index).split('\n').length;
       hits.push({ line, why, match: m[0].trim() });
     }
@@ -39,10 +51,13 @@ export const SCANNED = ['skills', 'templates', 'README.md', 'CATALOG.md'];
 
 export function checkInstallCommands(rootDir) {
   const errors = [];
+  const { skills } = readManifest(rootDir);
   for (const file of SCANNED.flatMap((p) => walk(join(rootDir, p), []))) {
     const buf = readFileSync(file);
     if (buf.includes(0)) continue; // binary
-    for (const hit of findInstallCommands(buf.toString('utf8')))
+    const [top, skill] = relative(rootDir, file).split(sep);
+    const allow = top === 'skills' && Array.isArray(skills[skill]?.allowInstall) ? skills[skill].allowInstall : [];
+    for (const hit of findInstallCommands(buf.toString('utf8'), allow))
       errors.push(`${relative(rootDir, file)}:${hit.line}: ${hit.why}: ${hit.match}`);
   }
   return errors;
