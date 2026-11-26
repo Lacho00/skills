@@ -241,7 +241,10 @@ npm run status -- <dir> --json
 Reads each project's `skills-lock.json` and compares the hash of every skill
 installed from Lacho00/skills with `skills/<name>` on `origin/main`. It lists the
 skills that are behind (run `npx skills update` in that project), the ones no
-longer in this repository, and how many skills still come from other sources.
+longer in this repository, and the skills that still come from other sources,
+split by `CATALOG.md` at the same ref: refused there (remove them), listed as
+exceptions (allowed; read the upstream diff before updating), or neither (migrate
+them here).
 
 ## License
 

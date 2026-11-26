@@ -5,7 +5,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { hashFolder } from '../scripts/lib/hash.mjs';
-import { findProjects, isOwnSource, projectStatus, repoHashesAt } from '../scripts/status.mjs';
+import { catalogDecisions, findProjects, isOwnSource, projectStatus, repoHashesAt } from '../scripts/status.mjs';
 import { branchFor, noticeBody, plan, prBody, prTitle } from '../scripts/vendor-prs.mjs';
 
 const tmp = (p) => mkdtempSync(join(tmpdir(), p));
@@ -34,6 +34,41 @@ test('projectStatus classifies each locked skill', () => {
     { skill: 'theirs', state: 'external', source: 'vercel-labs/agent-skills' },
   ]);
   assert.deepEqual(projectStatus({}, {}), []);
+});
+
+test('projectStatus splits other sources by CATALOG.md decisions', () => {
+  const lock = {
+    skills: {
+      allowed: { source: 'vercel-labs/agent-skills' },
+      banned: { source: 'other/repo' },
+      unknown: { source: 'other/repo' },
+      toString: { source: 'other/repo' },
+    },
+  };
+  assert.deepEqual(projectStatus(lock, {}, { allowed: 'exception', banned: 'refused' }).map((s) => s.state),
+    ['exception', 'refused', 'external', 'external']);
+});
+
+test('catalogDecisions reads the Exceptions and Refused tables only', () => {
+  const md = [
+    '## Recommended',
+    '| Skill | Source |',
+    '|---|---|',
+    '| `kept` | a/b |',
+    '## Exceptions: installed from their source',
+    '| Skill | Source | Status |',
+    '|---|---|---|',
+    '| `one` | a/b | No licence file |',
+    '| `two`, `three` | c/d | Uses `npx skills add` |',
+    '## Refused',
+    '| Skill | Source | Reason |',
+    '|---|---|---|',
+    '| `gone` | e/f | Replaced by `kept` |',
+    '## Later',
+    '| `after` | g/h |',
+  ].join('\n');
+  assert.deepEqual(catalogDecisions(md), { one: 'exception', two: 'exception', three: 'exception', gone: 'refused' });
+  assert.deepEqual(catalogDecisions(''), {});
 });
 
 test('repoHashesAt reads skills at a ref, ignoring later working-tree edits', () => {
