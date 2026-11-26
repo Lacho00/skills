@@ -5,7 +5,11 @@ import { join } from 'node:path';
 
 export const ALLOWED_LICENSES = ['MIT', 'Apache-2.0', 'BSD-2-Clause', 'BSD-3-Clause', 'ISC'];
 
-export const LICENSE_FILES = ['LICENSE', 'LICENSE.md', 'LICENSE.txt', 'LICENCE', 'LICENCE.md', 'LICENCE.txt', 'COPYING'];
+// Upstream paths are case-sensitive (git show), so lowercase names are listed too.
+export const LICENSE_FILES = [
+  'LICENSE', 'LICENSE.md', 'LICENSE.txt', 'LICENCE', 'LICENCE.md', 'LICENCE.txt', 'COPYING',
+  'license', 'license.md', 'license.txt',
+];
 
 const squash = (text) => text.replace(/\s+/g, ' ');
 

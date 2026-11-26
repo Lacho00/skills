@@ -146,6 +146,15 @@ test('add prefers a licence inside the skill folder', () => {
   assert.ok(!existsSync(join(root, 'skills', 'tool', 'LICENSE')));
 });
 
+test('add finds a lowercase licence file at the repo root', () => {
+  const gh = fakeGithub();
+  gh.repo('acme/lower', { 'license.md': MIT, 'skills/tool/SKILL.md': SKILL('tool') });
+  const root = ourRepo();
+  withUpstream((up) => add(root, up, { source: 'acme/lower', path: 'skills/tool' }));
+  assert.equal(readManifest(root).skills.tool.licenseFrom, 'license.md');
+  assert.equal(readFileSync(join(root, 'skills', 'tool', 'license.md'), 'utf8'), MIT);
+});
+
 test('add refuses sources without an allowed licence', () => {
   const gh = fakeGithub();
   gh.repo('acme/none', { 'tool/SKILL.md': SKILL('tool') });
