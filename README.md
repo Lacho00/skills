@@ -70,6 +70,7 @@ changes, run `npx skills update` in the project.
 | `impeccable` | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | Apache-2.0 | Design, critique, audit and polish a frontend interface |
 | `improve-animations` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | MIT | Survey a codebase's animation and motion code as a senior motion advisor, then produce a… |
 | `learn-taste` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | MIT | Turn a session's design corrections into rules, with their why, in DESIGN.md, a project skill,… |
+| `lenis` | [darkroomengineering/lenis](https://github.com/darkroomengineering/lenis) | MIT | Lenis smooth scroll from its authors: setup, GSAP ScrollTrigger and WebGL sync, sticky, reduced motion |
 | `make-interfaces-feel-better` | [watermeloncorp/watermelon-platform](https://github.com/watermeloncorp/watermelon-platform) | MIT | Design engineering principles for making interfaces feel polished |
 | `mobile-native` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | MIT | Make a web app feel native on a phone |
 | `pick-ui-library` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | MIT | Pick the library for a frontend task from a curated list |
