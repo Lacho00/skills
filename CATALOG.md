@@ -28,7 +28,6 @@ other skill. A row moves to the README skills table once it is vendored.
 | `react-patterns` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | React component and state patterns |
 | `react-testing` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | React testing patterns |
 | `nextjs-turbopack` | [affaan-m/ecc](https://github.com/affaan-m/ecc) | Next.js with Turbopack |
-| `next-cache-components-adoption` | [vercel/next.js](https://github.com/vercel/next.js) | Adopt Cache Components in a Next.js app. MIT. The first vendoring attempt failed: the repository is too big to clone over a slow link; retry on a fast one |
 | `animated-component-libraries` | [freshtechbro/claudedesignskills](https://github.com/freshtechbro/claudedesignskills) | Animated React component libraries, React Bits among them |
 | `aceternity-ui` | [secondsky/claude-skills](https://github.com/secondsky/claude-skills) | Aceternity UI animated components for React and Next.js. Path: `plugins/aceternity-ui/` |
 | `motionsites-web-builder` | [Motionsites-AI/claude-skill](https://github.com/Motionsites-AI/claude-skill) | MotionSites motion-heavy site builder. Vendor without `examples/` and `media/`, which are not MIT. Check first whether it needs their paid service |
@@ -65,4 +64,5 @@ one moves into this repository as soon as its source adds a licence.
 | `high-end-visual-design` | [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) | Removed upstream; the repository now ships only `design-taste-frontend` |
 | `astro` | [astrolicious/agent-skills](https://github.com/astrolicious/agent-skills) | Replaced by the own `astro-framework`, which covers Astro 6 and 7; the upstream skill predates them. No licence file either (asked in [astrolicious/agent-skills#4](https://github.com/astrolicious/agent-skills/issues/4)) |
 | `socratic-teaching-scaffolds` | [lyndonkl/claude](https://github.com/lyndonkl/claude) | No licence file. Replaced by the vendored `socratic-tutor` |
+| `next-cache-components-adoption` | [vercel/next.js](https://github.com/vercel/next.js) | Tells the agent to install `next-dev-loop` from its source with `npx skills add`, without asking, which this repository's rule forbids |
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | Its purpose is finding and installing skills from any source, which this repository's rule forbids. This catalog takes its place |
