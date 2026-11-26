@@ -138,6 +138,15 @@
       "hash": "d3dbf1d211b55fb4cf32d85990153aaa0ab89a9d4ac3ec08b8584cb20c45614b",
       "modified": false
     },
+    "creative-portfolio-resume": {
+      "source": "paramchoudhary/resumeskills",
+      "path": "skills/creative-portfolio-resume",
+      "commit": "39e8356b81164ead77da7699ebfae194e7c1187d",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "cb5fbf63463a0e0cfae679f8db63e43b3ab14c4a0a7b2a77e35f7ae10a789b7e",
+      "modified": false
+    },
     "design-critique": {
       "source": "anthropics/knowledge-work-plugins",
       "path": "design/skills/design-critique",
@@ -318,6 +327,15 @@
       "hash": "f837a9a9d27c9475ba342f29ef11ae97106b818000b50ab32f726783364329d5",
       "modified": false
     },
+    "k12-lesson-plan-creation": {
+      "source": "anthropics/k12-teacher-skills",
+      "path": "plugin/skills/k12-lesson-plan-creation",
+      "commit": "31fd6dbb0c07cb50bb3ce7f62a4135a393bd0e8c",
+      "license": "Apache-2.0",
+      "licenseFrom": "plugin/skills/k12-lesson-plan-creation/LICENSE",
+      "hash": "247d4a2436b2037d7b8529f0a0b8e2697204c6f40aa3326062075346d91437b2",
+      "modified": false
+    },
     "learn-taste": {
       "source": "emilkowalski/skills",
       "path": "skills/learn-taste",
@@ -343,6 +361,42 @@
       "license": "MIT",
       "licenseFrom": "LICENSE",
       "hash": "eb1685b3c620df5c5ac582a154469b905eb94c4aee43c14aabb00b40011c19f7",
+      "modified": false
+    },
+    "nextjs-app-router-patterns": {
+      "source": "wshobson/agents",
+      "path": "plugins/frontend-mobile-development/skills/nextjs-app-router-patterns",
+      "commit": "be57c0b2e3c05c528ca6132b87410b385718775f",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "8bae0916d2333ab4d8563b3055dd5aeace121ecf63a266f6a94c316c7fd96c5b",
+      "modified": false
+    },
+    "odoo-19": {
+      "source": "unclecatvn/agent-skills",
+      "path": "skills/odoo-19.0",
+      "commit": "82ebbaed8988e9697687612575d437ca0eacec4e",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "44af4495f66b006c3880f084e896f932919943f6b109ba4a874c5a42d41da626",
+      "modified": true
+    },
+    "odoo-qweb-templates": {
+      "source": "sickn33/agentic-awesome-skills",
+      "path": "skills/odoo-qweb-templates",
+      "commit": "bbfc66fe61e8b6ced7d38481c47600e8ac9b8eea",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "a1c1da54e8d2cf5013511106e8e5dae84a0c685d33438fed3329102931e937b2",
+      "modified": false
+    },
+    "odoo-rpc-api": {
+      "source": "sickn33/agentic-awesome-skills",
+      "path": "skills/odoo-rpc-api",
+      "commit": "bbfc66fe61e8b6ced7d38481c47600e8ac9b8eea",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "66dfcd3e4a5408cdb9da8cd9f3a794eb526c567b42c05c87041a8392fbea6bd8",
       "modified": false
     },
     "pick-ui-library": {
@@ -444,6 +498,15 @@
       "hash": "b17bd42823f6e101134b0373e392e765fbb3307d39026f1fe71cd48a1e5a73bd",
       "modified": false
     },
+    "socratic-tutor": {
+      "source": "janestreet/agent_skills",
+      "path": "socratic-tutor",
+      "commit": "7c6715c29548a3b39d4a9545c698ee4fd17a7213",
+      "license": "MIT",
+      "licenseFrom": "LICENSE.md",
+      "hash": "8e0cb0be07f68e33f6c0de70d01be8595606c8d42ef61b042ebe59b617e8aca9",
+      "modified": false
+    },
     "supabase": {
       "source": "supabase/agent-skills",
       "path": "skills/supabase",
@@ -460,6 +523,15 @@
       "license": "MIT",
       "licenseFrom": "LICENSE",
       "hash": "006a187ba8b42ce42b39dd37b1ddb61efcdcb6557b58a3b11b1e4caf3abd871b",
+      "modified": false
+    },
+    "syllabus": {
+      "source": "alirezarezvani/claude-skills",
+      "path": "research/syllabus/skills/syllabus",
+      "commit": "f11fccbb2bfada760b26b3c8d581dc7dc9984a9d",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "a6af0facecfb940d7c20522a952457190e3546e0eeaabeb006743f381299ed50",
       "modified": false
     },
     "tailwind-design-system": {
