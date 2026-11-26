@@ -8,7 +8,7 @@ export const ALLOWED_LICENSES = ['MIT', 'Apache-2.0', 'BSD-2-Clause', 'BSD-3-Cla
 // Upstream paths are case-sensitive (git show), so lowercase names are listed too.
 export const LICENSE_FILES = [
   'LICENSE', 'LICENSE.md', 'LICENSE.txt', 'LICENCE', 'LICENCE.md', 'LICENCE.txt', 'COPYING',
-  'license', 'license.md', 'license.txt',
+  'license', 'license.md', 'license.txt', 'licence', 'licence.md', 'licence.txt', 'copying',
 ];
 
 const squash = (text) => text.replace(/\s+/g, ' ');
