@@ -35,8 +35,10 @@ changes, run `npx skills update` in the project.
 
 | Skill | Vendored from | Licence | What it does |
 |---|---|---|---|
+| `creative-portfolio-resume` | [paramchoudhary/resumeskills](https://github.com/paramchoudhary/resumeskills) | MIT | Balance visual design with ATS compatibility for creative roles |
 | `playwright-best-practices` | [currents-dev/playwright-best-practices-skill](https://github.com/currents-dev/playwright-best-practices-skill) | MIT | Playwright tests, flaky tests, Page Object Model, CI |
 | `security-audit` | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) | MIT | Security guidance and vulnerability review for codebases, APIs, services, CLI tools,… |
+| `socratic-tutor` | [janestreet/agent_skills](https://github.com/janestreet/agent_skills) | MIT | Structured Socratic tutoring when the user asks to be taught, quizzed, or drilled to mastery on a topic |
 | `webapp-testing` | [anthropics/skills](https://github.com/anthropics/skills) | Apache-2.0 | Toolkit for interacting with and testing local web applications using Playwright |
 
 ### UI and motion
@@ -144,6 +146,27 @@ changes, run `npx skills update` in the project.
 | `compose-animations` | [chrisbanes/skills](https://github.com/chrisbanes/skills) | Apache-2.0 | Write or review Jetpack Compose motion |
 | `edge-to-edge` | [android/skills](https://github.com/android/skills) | Apache-2.0 | Use this skill to migrate your Jetpack Compose app to add adaptive edge-to-edge support and… |
 | `jetpack-compose-performance` | [android/skills](https://github.com/android/skills) | Apache-2.0 | Diagnose and optimize Android Jetpack Compose UI code |
+
+### Next.js
+
+| Skill | Vendored from | Licence | What it does |
+|---|---|---|---|
+| `nextjs-app-router-patterns` | [wshobson/agents](https://github.com/wshobson/agents) | MIT | Next.js App Router with Server Components, streaming, parallel routes, and advanced data fetching |
+
+### Odoo
+
+| Skill | Vendored from | Licence | What it does |
+|---|---|---|---|
+| `odoo-19` | [unclecatvn/agent-skills](https://github.com/unclecatvn/agent-skills) | MIT | Odoo 19 development guides: ORM, views, security, OWL, reports, migrations, performance. Modified: upstream `AGENTS.md` dropped (it installs from the source) and the description shortened to the 1024-character limit |
+| `odoo-qweb-templates` | [sickn33/agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | MIT | Odoo QWeb templating for PDF reports, email templates, and website pages |
+| `odoo-rpc-api` | [sickn33/agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | MIT | Odoo external JSON-RPC and XML-RPC APIs: authentication, model calls, record CRUD |
+
+### Teaching
+
+| Skill | Vendored from | Licence | What it does |
+|---|---|---|---|
+| `k12-lesson-plan-creation` | [anthropics/k12-teacher-skills](https://github.com/anthropics/k12-teacher-skills) | Apache-2.0 | Lesson plan, student-facing materials, and observation template |
+| `syllabus` | [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | MIT | Supplementary readings for a course syllabus or outline, grouped by topic |
 
 ## Adding a skill
 
