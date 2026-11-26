@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // Lists which local projects have skills from this repository that are behind
-// main, and which still carry skills installed from other sources.
+// main, and which still carry skills installed from other sources. Skills from
+// other sources are split by CATALOG.md: an allowed exception, a refused skill
+// to remove, or one still to migrate here.
 //
 //   npm run status [-- <projects-dir>] [--ref <git-ref>] [--json]
 //
@@ -21,12 +23,35 @@ const OWN_SOURCE = /^(?:https:\/\/github\.com\/)?lacho00\/skills(?:\.git)?\/?$/i
 
 export const isOwnSource = (source) => typeof source === 'string' && OWN_SOURCE.test(source.trim());
 
+// Skill names in the first column of the tables under CATALOG.md's
+// "## Exceptions" and "## Refused" headings. Returns { <skill>: 'exception' | 'refused' }.
+export function catalogDecisions(text) {
+  const decisions = {};
+  let kind = null;
+  for (const line of String(text ?? '').split('\n')) {
+    const heading = /^##\s+(.*)$/.exec(line);
+    if (heading) {
+      kind = /^exceptions\b/i.test(heading[1]) ? 'exception' : /^refused\b/i.test(heading[1]) ? 'refused' : null;
+      continue;
+    }
+    if (!kind || !line.startsWith('|')) continue;
+    const first = line.split('|')[1] ?? '';
+    for (const [, name] of first.matchAll(/`([^`]+)`/g)) decisions[name] = kind;
+  }
+  return decisions;
+}
+
 // lock: parsed skills-lock.json. repoHashes: { <skill>: hash } at the reference ref.
-// Returns [{ skill, state }] with state current | behind | not-in-repo | external.
-export function projectStatus(lock, repoHashes) {
+// decisions: catalogDecisions() of CATALOG.md at that ref.
+// Returns [{ skill, state }] with state current | behind | not-in-repo |
+// exception | refused | external.
+export function projectStatus(lock, repoHashes, decisions = {}) {
   const skills = lock && typeof lock.skills === 'object' && lock.skills ? lock.skills : {};
   return Object.entries(skills).map(([skill, entry]) => {
-    if (!isOwnSource(entry?.source)) return { skill, state: 'external', source: entry?.source ?? '' };
+    if (!isOwnSource(entry?.source)) {
+      const state = Object.hasOwn(decisions, skill) ? decisions[skill] : 'external';
+      return { skill, state, source: entry?.source ?? '' };
+    }
     if (!(skill in repoHashes)) return { skill, state: 'not-in-repo' };
     return { skill, state: entry.computedHash === repoHashes[skill] ? 'current' : 'behind' };
   });
@@ -45,6 +70,15 @@ export function repoHashesAt(rootDir, ref) {
     return Object.fromEntries(names.map((n) => [n, hashFolder(join(skillsDir, n))]));
   } finally {
     rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+export function catalogAt(rootDir, ref) {
+  try {
+    return execFileSync('git', ['-C', rootDir, 'show', `${ref}:CATALOG.md`], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+  } catch {
+    console.error(`warning: no CATALOG.md at ${ref}; every skill from another source counts as to migrate`);
+    return '';
   }
 }
 
@@ -92,6 +126,7 @@ function main(argv) {
   const projectsDir = resolve(opts.dir ?? dirname(mainClone));
   const ref = opts.ref ?? defaultRef(rootDir);
   const hashes = repoHashesAt(rootDir, ref);
+  const decisions = catalogDecisions(catalogAt(rootDir, ref));
 
   const report = findProjects(projectsDir, mainClone).map((dir) => {
     let lock;
@@ -100,7 +135,7 @@ function main(argv) {
     } catch (err) {
       return { project: basename(dir), error: `unreadable skills-lock.json: ${err.message}`, skills: [] };
     }
-    return { project: basename(dir), skills: projectStatus(lock, hashes) };
+    return { project: basename(dir), skills: projectStatus(lock, hashes, decisions) };
   });
 
   if (opts.json) {
@@ -118,13 +153,18 @@ function main(argv) {
     const behind = by('behind');
     const missing = by('not-in-repo');
     const external = by('external');
-    if (!behind.length && !missing.length && !external.length) continue;
+    const refused = by('refused');
+    const exceptions = by('exception');
+    if (!behind.length && !missing.length && !external.length && !refused.length && !exceptions.length) continue;
     console.log(p.project);
     if (behind.length) console.log(`  behind main (run npx skills update): ${behind.join(', ')}`);
     if (missing.length) console.log(`  no longer in Lacho00/skills: ${missing.join(', ')}`);
-    if (external.length) console.log(`  installed from other sources (migrate): ${external.length}`);
+    if (refused.length) console.log(`  refused in CATALOG.md (remove): ${refused.join(', ')}`);
+    if (external.length) console.log(`  installed from other sources (migrate): ${external.join(', ')}`);
+    if (exceptions.length) console.log(`  CATALOG.md exceptions (read the upstream diff before updating): ${exceptions.length}`);
   }
-  console.log(`\n${count('current')} current, ${count('behind')} behind, ${count('not-in-repo')} not in repo, ${count('external')} from other sources`);
+  console.log(`\n${count('current')} current, ${count('behind')} behind, ${count('not-in-repo')} not in repo, ` +
+    `${count('refused')} refused, ${count('external')} to migrate, ${count('exception')} exceptions`);
   return 0;
 }
 
