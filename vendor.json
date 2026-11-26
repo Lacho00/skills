@@ -345,6 +345,15 @@
       "hash": "951240f2017e312a92ff741aae1fd44b73db880672277b4c726a08760d02d08d",
       "modified": false
     },
+    "lenis": {
+      "source": "darkroomengineering/lenis",
+      "path": "skills/lenis",
+      "commit": "50271e065a5e5ff81d83f15b584f13b58f199ab6",
+      "license": "MIT",
+      "licenseFrom": "LICENSE",
+      "hash": "8fc6b35e5db8de7e550363c7ceb9206c4d91fe690add69c6d416071a8e11dbd4",
+      "modified": true
+    },
     "make-interfaces-feel-better": {
       "source": "watermeloncorp/watermelon-platform",
       "path": "skills/make-interfaces-feel-better",

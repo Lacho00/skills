@@ -32,6 +32,12 @@ other skill. A row moves to the README skills table once it is vendored.
 | `aceternity-ui` | [secondsky/claude-skills](https://github.com/secondsky/claude-skills) | Aceternity UI animated components for React and Next.js. Path: `plugins/aceternity-ui/` |
 | `motionsites-web-builder` | [Motionsites-AI/claude-skill](https://github.com/Motionsites-AI/claude-skill) | MotionSites motion-heavy site builder. Vendor without `examples/` and `media/`, which are not MIT. Check first whether it needs their paid service |
 
+## Web motion and 3D
+
+| Skill | Source | What it does |
+|---|---|---|
+| `awwwards-3d` | [tsogjavklann/awwwards-3d](https://github.com/tsogjavklann/awwwards-3d) | Scroll-driven 3D single-file sites with Three.js, GSAP and Lenis. Overlaps the vendored `threejs-*` and `gsap-*` skills and pins older versions. The skill sits at the repository root: vendor without `docs/` (screenshots) and `assets/models/` |
+
 ## Kotlin / Android
 
 | Skill | Source | What it does |
