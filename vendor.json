@@ -489,6 +489,24 @@
       "hash": "33c65c52b194bff0f0f5098bc4d892e3b2da0cf98f711c1ff96fe1b1d852abed",
       "modified": false
     },
+    "security-best-practices": {
+      "source": "openai/skills",
+      "path": "skills/.curated/security-best-practices",
+      "commit": "5c8f1e26803bcfaffeceef1e7accbcf7e388417a",
+      "license": "Apache-2.0",
+      "licenseFrom": "skills/.curated/security-best-practices/LICENSE.txt",
+      "hash": "f3a018deca655724357a5576d36026b78f174a97094d42d3ef5f7ff08c9c1f27",
+      "modified": false
+    },
+    "security-threat-model": {
+      "source": "openai/skills",
+      "path": "skills/.curated/security-threat-model",
+      "commit": "5c8f1e26803bcfaffeceef1e7accbcf7e388417a",
+      "license": "Apache-2.0",
+      "licenseFrom": "skills/.curated/security-threat-model/LICENSE.txt",
+      "hash": "6d66f27a8e4353f49264547acf4e541efd835f2e3a2d91f5a43e2104be5bd65e",
+      "modified": false
+    },
     "seo-audit": {
       "source": "coreyhaines31/marketingskills",
       "path": "skills/seo-audit",

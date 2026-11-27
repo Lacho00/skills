@@ -38,6 +38,8 @@ changes, run `npx skills update` in the project.
 | `creative-portfolio-resume` | [paramchoudhary/resumeskills](https://github.com/paramchoudhary/resumeskills) | MIT | Balance visual design with ATS compatibility for creative roles |
 | `playwright-best-practices` | [currents-dev/playwright-best-practices-skill](https://github.com/currents-dev/playwright-best-practices-skill) | MIT | Playwright tests, flaky tests, Page Object Model, CI |
 | `security-audit` | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) | MIT | Security guidance and vulnerability review for codebases, APIs, services, CLI tools,… |
+| `security-best-practices` | [openai/skills](https://github.com/openai/skills) | Apache-2.0 | Language- and framework-specific secure-coding review (Python, JS/TS, Go): best-practice reports and secure-by-default code |
+| `security-threat-model` | [openai/skills](https://github.com/openai/skills) | Apache-2.0 | Repository-grounded threat model: trust boundaries, assets, attacker capabilities, abuse paths and mitigations |
 | `socratic-tutor` | [janestreet/agent_skills](https://github.com/janestreet/agent_skills) | MIT | Structured Socratic tutoring when the user asks to be taught, quizzed, or drilled to mastery on a topic |
 | `webapp-testing` | [anthropics/skills](https://github.com/anthropics/skills) | Apache-2.0 | Toolkit for interacting with and testing local web applications using Playwright |
 

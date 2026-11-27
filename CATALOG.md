@@ -61,6 +61,7 @@ one moves into this repository as soon as its source adds a licence.
 | `deploy-to-vercel` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
 | `vercel-react-best-practices` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file (frontmatter says MIT) |
 | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | No licence file |
+| `security-review` | [getsentry/skills](https://github.com/getsentry/skills) | Licence outside the allowed list: the skill folder is CC BY-SA 4.0 (its reference material derives from the OWASP Cheat Sheet Series), although the repository is Apache-2.0 |
 | `close-reading-skill-builder`, `criterion-referenced-rubric-generator`, `discipline-specific-critical-thinking-task-designer`, `historical-source-adapter`, `single-point-rubric-designer` | [garethmanning/education-agent-skills](https://github.com/garethmanning/education-agent-skills) | CC BY-SA 4.0, not on the allowed list |
 
 ## Refused
